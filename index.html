@@ -180,7 +180,7 @@ body{padding:16px}
   <div class="grid">
     <section class="card" id="trend-card">
       <h2>ยอดขายรายวัน เทียบเป้า</h2>
-      <p class="note">รวมทุกร้านใน UPC West · เส้นประคือเป้าต่อวัน · </p>
+      <p class="note">รวมทุกร้านใน UPC West · เส้นประคือเป้าต่อวัน · ตั้งแต่ 1 พ.ย. ถึง 6 พ.ย.</p>
       <div class="chart c-trend" data-draw="trend" data-source="west_days"></div>
     </section>
     <section class="card" id="areas-card">
@@ -406,9 +406,9 @@ const clip = (s, n) => (s.length > n ? s.slice(0, n - 1) + '…' : s);
 dash.calc('west_days', {
   inputs: ['shops'],
   title: 'ยอดขายรายวัน UPC West',
-  description: 'รวมยอดทุกร้านต่อวัน เทียบเป้ารวมต่อวัน วันที่ 5–6 พ.ย.',
+  description: 'รวมยอดทุกร้านต่อวัน เทียบเป้ารวมต่อวัน วันที่ 1–6 พ.ย.',
   fn: (shops) => {
-    const days = [['nov5', '5 พ.ย.'], ['nov6', '6 พ.ย. (ครบทั้งวัน)']];
+    const days = [['nov1', '1 พ.ย.'], ['nov2', '2 พ.ย.'], ['nov3', '3 พ.ย.'], ['nov4', '4 พ.ย.'], ['nov5', '5 พ.ย.'], ['nov6', '6 พ.ย.']];
     const target = shops.reduce((s, r) => s + r.target, 0);
     return days.map(([k, day]) => ({day, actual: shops.reduce((s, r) => s + r[k], 0), target}));
   }
