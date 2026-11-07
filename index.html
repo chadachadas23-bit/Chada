@@ -299,6 +299,27 @@ body{padding:16px}
     </div>
   </section>
 
+  <section class="card" id="closedays-card" style="margin-bottom:var(--cds-gap-md)">
+    <h2>การปิดการขายรายวัน รายสาขา</h2>
+    <p class="note">UPC West · 1–6 พ.ย. · แต่ละช่องคือ ปิดได้ / รายการ · เรียงจากสาขาที่มีรายการลงข้อมูลมากที่สุดตลอด 6 วัน</p>
+    <div class="scroll">
+      <table data-source="shop_close_days" data-row-key="shop">
+        <thead><tr>
+          <th data-field="shop">สาขา</th>
+          <th class="n" data-field="total">รายการรวม</th>
+          <th class="n" data-field="rate">อัตราปิดรวม</th>
+          <th class="n" data-field="t1">1 พ.ย.</th>
+          <th class="n" data-field="t2">2 พ.ย.</th>
+          <th class="n" data-field="t3">3 พ.ย.</th>
+          <th class="n" data-field="t4">4 พ.ย.</th>
+          <th class="n" data-field="t5">5 พ.ย.</th>
+          <th class="n" data-field="t6">6 พ.ย.</th>
+        </tr></thead>
+        <tbody data-draw="closedaysbody"></tbody>
+      </table>
+    </div>
+  </section>
+
   <section class="card" id="staff-card" style="margin-bottom:var(--cds-gap-md)">
     <h2>การปิดการขายรายพนักงาน</h2>
     <p class="note">UPC West · 6 พ.ย. (ครบทั้งวัน) · แสดงตามรหัสพนักงาน (SALE ID) จากฟอร์ม · ยอดขายคือยอดรวมของรายการที่ปิดได้</p>
@@ -933,6 +954,27 @@ dash.draw('plan', (el) => {
   const p = document.createElement('p'); p.className = 'note caveat';
   p.textContent = 'ข้อเสนอเป็นข้อสันนิษฐานจากตัวเลข ควรยืนยันสาเหตุกับทีมหน้าร้านก่อนนำไปใช้';
   el.append(p);
+});
+
+// ---------- closing by shop by day ----------
+dash.calc('shop_close_days', {
+  inputs: ['closing_shops'],
+  title: 'การปิดการขายรายวัน รายสาขา',
+  description: 'รายการและที่ปิดได้ของแต่ละร้านใน UPC West แยกรายวัน 1–6 พ.ย. เรียงตามจำนวนรายการรวมจากมากไปน้อย',
+  fn: (shops) => shops.map((r) => {
+    const o = {shop: r.shop, total: 0, won: 0};
+    for (let d = 1; d <= 6; d++) { o['t' + d] = r['total' + d] || 0; o['w' + d] = r['won' + d] || 0; o.total += o['t' + d]; o.won += o['w' + d]; }
+    o.rate = o.total ? o.won / o.total : null;
+    return o;
+  }).filter((r) => r.total > 0).sort((a, b) => b.total - a.total)
+});
+dash.draw('closedaysbody', (tb) => {
+  const rows = ready(tb, 'shop_close_days'); tb.replaceChildren(); if (!rows) return;
+  rows.forEach((r) => {
+    const cells = [[short(r.shop)], [fI(r.total), 'n'], [r.rate == null ? '—' : fP(r.rate), 'n']];
+    for (let d = 1; d <= 6; d++) cells.push([r['t' + d] ? fI(r['w' + d]) + ' / ' + fI(r['t' + d]) : '—', 'n']);
+    addRow(tb, r.shop, cells);
+  });
 });
 
 // ---------- why-not-closed by shop (dropdown) ----------
