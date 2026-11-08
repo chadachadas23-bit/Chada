@@ -119,6 +119,8 @@ body{padding:16px}
 
 
 
+
+
 <div class="uw">
   <div class="hero">
   <h1>UPC West: ยอดขายสะสม 6–7 พ.ย.</h1>
@@ -279,7 +281,6 @@ body{padding:16px}
     <section class="card" id="channel-card" style="grid-column:1/-1">
       <h2>แยกตามช่องทางการขาย</h2>
       <p class="note">UPC West · เรียงตามจำนวนรายการ 7 พ.ย. (ครบทั้งวัน)</p>
-      <div class="chart c-hours" data-draw="chanbars" data-source="channel_perf"></div>
       <table data-source="channel_perf" data-row-key="channel">
         <thead><tr>
           <th data-field="channel">ช่องทาง</th>
@@ -290,19 +291,21 @@ body{padding:16px}
         </tr></thead>
         <tbody data-draw="chanbody"></tbody>
       </table>
-      <h3 class="subh">แยกตามช่องทางและสาขา (7 พ.ย.) · ทุกช่องทาง เรียงตามช่องทางที่มีรายการมากที่สุด</h3>
-      <div class="chart c-hours" data-draw="chanshopbars" data-source="channel_shops"></div>
-      <table data-source="channel_shops" data-row-key="channel,shop">
+      <h3 class="subh">แยกตามช่องทางและสาขา (7 พ.ย.) · แต่ละช่องคือ ปิดได้ / รายการ · เรียงตามจำนวนรายการรวม</h3>
+      <div class="scroll">
+      <table data-source="channel_shops" data-row-key="shop">
         <thead><tr>
-          <th data-field="channel">ช่องทาง</th>
           <th data-field="shop">สาขา</th>
-          <th class="n" data-field="total7">รายการ</th>
-          <th class="n" data-field="won7">ปิดได้</th>
-          <th class="n" data-field="rate7">อัตราปิด</th>
-          <th class="n" data-field="won6">6 พ.ย. ปิดได้</th>
+          <th class="n" data-field="walkin">Walk-In</th>
+          <th class="n" data-field="s2s">Service To Sale</th>
+          <th class="n" data-field="tele">Telesale</th>
+          <th class="n" data-field="social">Social Media</th>
+          <th class="n" data-field="total7">รวม</th>
+          <th class="n" data-field="rate7">อัตราปิดรวม</th>
         </tr></thead>
         <tbody data-draw="chanshopbody"></tbody>
       </table>
+      </div>
     </section>
   </div>
 
@@ -896,92 +899,23 @@ dash.draw('chanbody', (tb) => {
 });
 
 
-dash.draw('chanbars', (el) => {
-  const rows = ready(el, 'channel_perf'); if (!rows || !rows.length) return;
-  el.replaceChildren();
-  const W = Math.max(el.clientWidth, 260), H = 280, m = {t: 38, b: 28, l: 34, r: 10};
-  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`)
-    .attr('role', 'img').attr('aria-label', 'จำนวนรายการและที่ปิดได้ แยกตามช่องทางการขาย แถบแนวตั้ง');
-  const keys = [['total2', 'รายการ', '#b4bfcc'], ['won2', 'ปิดได้', 'var(--g-main)']];
-  const x = d3.scaleBand(rows.map((r) => r.channel), [m.l, W - m.r]).paddingInner(0.3).paddingOuter(0.1);
-  const xi = d3.scaleBand(keys.map((k) => k[0]), [0, x.bandwidth()]).padding(0.1);
-  const y = d3.scaleLinear([0, Math.max(1, d3.max(rows, (r) => r.total2)) * 1.15], [H - m.b, m.t]).nice();
-  svg.selectAll('line.grid').data(y.ticks(4)).join('line').attr('class', 'grid')
-    .attr('x1', m.l).attr('x2', W - m.r).attr('y1', (t) => y(t)).attr('y2', (t) => y(t)).style('stroke', 'var(--cds-chart-grid, rgba(0,0,0,.08))');
-  svg.selectAll('text.yt').data(y.ticks(4)).join('text').attr('class', 'yt')
-    .attr('x', m.l - 6).attr('y', (t) => y(t) + 4).attr('text-anchor', 'end').text((t) => fI(t));
-  svg.selectAll('text.cn').data(rows).join('text').attr('class', 'cn')
-    .attr('x', (r) => x(r.channel) + x.bandwidth() / 2).attr('y', H - m.b + 18).attr('text-anchor', 'middle').text((r) => r.channel);
-  keys.forEach(([k, , col]) => {
-    svg.selectAll('rect.b-' + k).data(rows).join('rect').attr('class', 'b-' + k)
-      .attr('x', (r) => x(r.channel) + xi(k)).attr('width', xi.bandwidth())
-      .attr('y', (r) => y(r[k])).attr('height', (r) => H - m.b - y(r[k])).attr('rx', 2).style('fill', col);
-    svg.selectAll('text.v-' + k).data(rows).join('text').attr('class', 'v-' + k)
-      .attr('x', (r) => x(r.channel) + xi(k) + xi.bandwidth() / 2).attr('y', (r) => y(r[k]) - 4)
-      .attr('text-anchor', 'middle').text((r) => fI(r[k]));
-  });
-  let lx = m.l;
-  keys.forEach(([, lab, col]) => {
-    svg.append('rect').attr('x', lx).attr('y', 5).attr('width', 10).attr('height', 10).attr('rx', 2).style('fill', col);
-    svg.append('text').attr('x', lx + 16).attr('y', 15).text(lab + ' (7 พ.ย.)');
-    lx += 16 + tw(svg, lab + ' (7 พ.ย.)') + 16;
-  });
-  const tip = tipFor(el), step = x.step();
-  svg.selectAll('rect.hit').data(rows).join('rect').attr('class', 'hit')
-    .attr('x', (r) => x(r.channel) - (step - x.bandwidth()) / 2).attr('width', step).attr('y', 0).attr('height', H).style('fill', 'transparent')
-    .on('pointermove', (ev, r) => tip.show([r.channel, 'รายการ ' + fI(r.total2), 'ปิดได้ ' + fI(r.won2) + (r.rate2 == null ? '' : ' (' + fP(r.rate2) + ')')], ev))
-    .on('pointerleave', () => tip.hide());
-});
-
-dash.draw('chanshopbars', (el) => {
-  const rows = (ready(el, 'channel_shops') || []).filter((r) => r.total7 > 0); if (!rows.length) return;
-  el.replaceChildren();
-  const chans = ['Walk-In', 'Service To Sale', 'Telesale', 'Social Media'].filter((c) => rows.some((r) => r.channel === c));
-  const COL = {'Walk-In': '#1f3d73', 'Service To Sale': '#6f97ba', 'Telesale': '#d1ac6a', 'Social Media': '#7fa890'};
-  const byShop = d3.rollup(rows, (v) => Object.fromEntries(v.map((r) => [r.channel, r])), (r) => r.shop);
-  const shops = [...byShop.keys()].sort((a, b) => d3.sum(chans, (c) => (byShop.get(b)[c] || {total7: 0}).total7) - d3.sum(chans, (c) => (byShop.get(a)[c] || {total7: 0}).total7));
-  const tot = (s) => d3.sum(chans, (c) => (byShop.get(s)[c] || {total7: 0}).total7);
-  const W = Math.max(el.clientWidth, 320), H = 380, m = {t: 38, b: 134, l: 112, r: 10};
-  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`)
-    .attr('role', 'img').attr('aria-label', 'จำนวนรายการแยกตามช่องทางการขาย รายสาขา แถบแนวตั้งซ้อนกัน');
-  const x = d3.scaleBand(shops, [m.l, W - m.r]).paddingInner(0.25).paddingOuter(0.1);
-  const y = d3.scaleLinear([0, Math.max(1, d3.max(shops, tot)) * 1.12], [H - m.b, m.t]).nice();
-  svg.selectAll('line.grid').data(y.ticks(4)).join('line').attr('class', 'grid')
-    .attr('x1', m.l).attr('x2', W - m.r).attr('y1', (t) => y(t)).attr('y2', (t) => y(t)).style('stroke', 'var(--cds-chart-grid, rgba(0,0,0,.08))');
-  svg.selectAll('text.yt').data(y.ticks(4)).join('text').attr('class', 'yt')
-    .attr('x', m.l - 6).attr('y', (t) => y(t) + 4).attr('text-anchor', 'end').text((t) => fI(t));
-  svg.selectAll('text.sn').data(shops).join('text').attr('class', 'sn')
-    .attr('transform', (s) => `translate(${x(s) + x.bandwidth() / 2},${H - m.b + 12}) rotate(-40)`).attr('text-anchor', 'end')
-    .text((s) => clip(short(s), 22));
-  shops.forEach((s) => {
-    let acc = 0;
-    chans.forEach((c) => {
-      const r = byShop.get(s)[c]; if (!r || !r.total7) return;
-      svg.append('rect').attr('x', x(s)).attr('width', x.bandwidth()).attr('y', y(acc + r.total7))
-        .attr('height', y(acc) - y(acc + r.total7)).style('fill', COL[c]).style('stroke', '#fff').style('stroke-width', 0.5);
-      acc += r.total7;
-    });
-    svg.append('text').attr('x', x(s) + x.bandwidth() / 2).attr('y', y(acc) - 4).attr('text-anchor', 'middle').text(fI(acc));
-  });
-  let lx = m.l;
-  chans.forEach((c) => {
-    svg.append('rect').attr('x', lx).attr('y', 5).attr('width', 10).attr('height', 10).attr('rx', 2).style('fill', COL[c]);
-    svg.append('text').attr('x', lx + 16).attr('y', 15).text(c);
-    lx += 16 + tw(svg, c) + 16;
-  });
-  const tip = tipFor(el), step = x.step();
-  svg.selectAll('rect.hit').data(shops).join('rect').attr('class', 'hit')
-    .attr('x', (s) => x(s) - (step - x.bandwidth()) / 2).attr('width', step).attr('y', 0).attr('height', H).style('fill', 'transparent')
-    .on('pointermove', (ev, s) => tip.show([short(s) + ' · รวม ' + fI(tot(s)) + ' รายการ', ...chans.filter((c) => byShop.get(s)[c]).map((c) => { const r = byShop.get(s)[c]; return c + ' ' + fI(r.total7) + ' รายการ ปิดได้ ' + fI(r.won7); })], ev))
-    .on('pointerleave', () => tip.hide());
-});
-
 dash.draw('chanshopbody', (tb) => {
   const rows = ready(tb, 'channel_shops'); tb.replaceChildren(); if (!rows) return;
-  rows.filter((r) => r.total7 > 0).forEach((r) => addRow(tb, encodeURIComponent(r.channel) + ',' + encodeURIComponent(r.shop), [[r.channel], [short(r.shop)],
-    [fI(r.total7), 'n'], [fI(r.won7), 'n'], [fP(r.won7 / r.total7), 'n'],
-    [r.total6 ? fI(r.won6) + ' จาก ' + fI(r.total6) : '—', 'n']]));
-  [...tb.rows].forEach((tr, i) => { if (rows.filter((r) => r.total7 > 0)[i].won7 > 0) tr.classList.add('hit-row'); });
+  const CH = ['Walk-In', 'Service To Sale', 'Telesale', 'Social Media'];
+  const m = new Map();
+  rows.filter((r) => r.total7 > 0).forEach((r) => {
+    const e = m.get(r.shop) || {shop: r.shop, total: 0, won: 0, c: {}};
+    e.c[r.channel] = r; e.total += r.total7; e.won += r.won7; m.set(r.shop, e);
+  });
+  const cell = (e, c) => (e.c[c] ? [fI(e.c[c].won7) + ' / ' + fI(e.c[c].total7), 'n'] : ['—', 'n']);
+  [...m.values()].sort((a, b) => b.total - a.total).forEach((e) => {
+    addRow(tb, e.shop, [[short(e.shop)], ...CH.map((c) => cell(e, c)), [fI(e.total), 'n'], [fP(e.won / e.total), 'n']]);
+    if (e.won > 0) tb.lastElementChild.classList.add('hit-row');
+  });
+  const tt = {total: 0, won: 0, c: {}};
+  rows.forEach((r) => { tt.total += r.total7; tt.won += r.won7; const x = tt.c[r.channel] || (tt.c[r.channel] = {won7: 0, total7: 0}); x.won7 += r.won7; x.total7 += r.total7; });
+  addRow(tb, '__total', [['รวมทุกสาขา'], ...CH.map((c) => cell(tt, c)), [fI(tt.total), 'n'], [tt.total ? fP(tt.won / tt.total) : '—', 'n']]);
+  tb.lastElementChild.style.fontWeight = '600';
 });
 
 dash.draw('closebody', (tb) => {
