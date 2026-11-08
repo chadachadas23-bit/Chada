@@ -105,6 +105,8 @@ body{padding:16px}
 
 
 
+
+
 <div class="uw">
   <div class="hero">
   <h1>UPC West: ยอดขายสะสม 6–7 พ.ย.</h1>
@@ -139,6 +141,14 @@ body{padding:16px}
   </div>
 
   <div class="grid">
+    <section class="card" id="areas2-card" style="grid-column:1/-1">
+      <h2>%ACH สะสม 6–7 พ.ย. เทียบทุกพื้นที่</h2>
+      <p class="note">ยอดสะสม 6–7 พ.ย. ÷ เป้า 2 วัน · UPC West ไฮไลต์สี</p>
+      <div class="chart c-areas" data-draw="areas2" data-source="area_rank_two"></div>
+    </section>
+  </div>
+
+  <div class="grid">
     <section class="card" id="type-card">
       <h2>แยกตามประเภทร้าน</h2>
       <p class="note">ยอดสะสม 6–7 พ.ย. เทียบเป้า 2 วัน · เรียงจาก %ACH ต่ำสุด</p>
@@ -156,7 +166,24 @@ body{padding:16px}
   </div>
 
   <div class="grid">
-    
+    <section class="card" id="shops2-card" style="grid-column:1/-1">
+      <h2>รายร้านสะสม 6–7 พ.ย.</h2>
+      <p class="note">เรียงตามประเภทร้าน Matching → Hall → Non Matching → COCO แล้วเรียงตามยอดสะสมจากมากไปน้อย (เป้า = 2 วัน)</p>
+      <div class="scroll">
+        <table data-source="shop_two" data-row-key="shop">
+          <thead><tr>
+            <th data-field="shop">ร้าน</th>
+            <th data-field="type">ประเภท</th>
+            <th class="n" data-field="target">เป้า</th>
+            <th class="n" data-field="nov6">6 พ.ย.</th>
+            <th class="n" data-field="nov7">7 พ.ย.</th>
+            <th class="n" data-field="gap">ผลต่างเป้า</th>
+            <th class="n" data-field="ach">%ACH</th>
+          </tr></thead>
+          <tbody data-draw="two_body"></tbody>
+        </table>
+      </div>
+    </section>
   </div>
 
   <div class="grid">
