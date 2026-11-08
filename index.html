@@ -111,6 +111,8 @@ body{padding:16px}
 
 
 
+
+
 <div class="uw">
   <div class="hero">
   <h1>UPC West: ยอดขายสะสม 6–7 พ.ย.</h1>
@@ -125,7 +127,7 @@ body{padding:16px}
     <div class="tile card">
       <div class="lab">ยอดขายสะสม 6–7 พ.ย.</div>
       <span class="big" data-draw="num" data-fmt="int" data-source="two_kpi" data-field="actual" data-row="0">—</span>
-      <p class="note">target 2 วัน <b data-draw="num" data-fmt="int" data-source="two_kpi" data-field="target" data-row="0">—</b></p>
+      <p class="note">target 2 วัน <b data-draw="num" data-fmt="int" data-source="two_kpi" data-field="target" data-row="0">—</b> (target / วัน <b data-draw="num" data-fmt="int" data-source="two_kpi" data-field="tday" data-row="0">—</b>)</p>
     </div>
     <div class="tile card">
       <div class="lab">%ACH สะสม 2 วัน</div>
@@ -178,7 +180,8 @@ body{padding:16px}
           <thead><tr>
             <th data-field="shop">ร้าน</th>
             <th data-field="type">ประเภท</th>
-            <th class="n" data-field="target">target</th>
+            <th class="n" data-field="tday">target / วัน</th>
+            <th class="n" data-field="target">target 2 วัน</th>
             <th class="n" data-field="nov6">6 พ.ย.</th>
             <th class="n" data-field="nov7">7 พ.ย.</th>
             <th class="n" data-field="gap">ผลต่าง target</th>
@@ -1049,7 +1052,7 @@ dash.calc('two_kpi', {
   fn: (shops) => {
     const sum = (k) => shops.reduce((s, r) => s + r[k], 0);
     const a4 = sum('nov6'), a5 = sum('nov7'), t = sum('target') * 2, actual = a4 + a5, target = t;
-    return [{actual, target, ach: actual / target, remain: target - actual, gap: actual - target, a4, a5, t,
+    return [{tday: t / 2, actual, target, ach: actual / target, remain: target - actual, gap: actual - target, a4, a5, t,
       chg: a4 ? a5 / a4 - 1 : null, ach4: a4 / (t / 2), ach5: a5 / (t / 2)}];
   }
 });
@@ -1069,7 +1072,7 @@ dash.calc('shop_two', {
   inputs: ['shops'],
   title: 'ผลงานรายร้านสะสม 6–7 พ.ย.',
   description: 'ยอดสะสม 6–7 พ.ย. เทียบ target 2 วัน พร้อมยอดแยกรายวันของแต่ละร้าน',
-  fn: (shops) => shops.map((s) => { const tot = s.nov6 + s.nov7, tg = s.target * 2; return {shop: s.shop, target: tg, nov6: s.nov6, nov7: s.nov7, total: tot,
+  fn: (shops) => shops.map((s) => { const tot = s.nov6 + s.nov7, tg = s.target * 2; return {shop: s.shop, tday: s.target, target: tg, nov6: s.nov6, nov7: s.nov7, total: tot,
     ach: tg ? tot / tg : null, gap: tot - tg, type: s.type}; }).sort((a, b) => b.total - a.total)
 });
 
@@ -1250,7 +1253,7 @@ dash.draw('two_body', (tb) => {
   const ORD = ['Matching', 'DTAC HALL', 'Non Matching', 'DTAC COCO'], LBL = {'DTAC HALL': 'Hall', 'DTAC COCO': 'COCO'};
   const oi = (t) => { const i = ORD.indexOf(t); return i < 0 ? 99 : i; };
   [...rows].sort((a, b) => oi(a.type) - oi(b.type) || b.total - a.total)
-    .forEach((r) => addRow(tb, r.shop, [[short(r.shop)], [LBL[r.type] || r.type], [fI(r.target), 'n'], [fI(r.nov6), 'n'], [fI(r.nov7), 'n'],
+    .forEach((r) => addRow(tb, r.shop, [[short(r.shop)], [LBL[r.type] || r.type], [fI(r.tday), 'n'], [fI(r.target), 'n'], [fI(r.nov6), 'n'], [fI(r.nov7), 'n'],
       [fSI(r.gap), 'n'], [r.ach == null ? '—' : fP(r.ach), 'n']]));
 });
 
