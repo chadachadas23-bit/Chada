@@ -107,21 +107,25 @@ body{padding:16px}
 
 
 
+
+
+
+
 <div class="uw">
   <div class="hero">
   <h1>UPC West: ยอดขายสะสม 6–7 พ.ย.</h1>
-  <p class="sub">ข้อมูลจากชีต POSTPAID 101 By Shop OCT '26 แท็บ 8 DAY · %ACH = ยอดขายจริง ÷ เป้า</p>
-  <p class="take">สะสม 6–7 พ.ย. ทำได้ <b data-draw="num" data-fmt="pct" data-source="two_kpi" data-field="ach" data-row="0">—</b> ของเป้า 2 วัน ผลต่างจากเป้า <b data-draw="num" data-fmt="sint" data-source="two_kpi" data-field="gap" data-row="0">—</b> อันดับ <b data-draw="num" data-fmt="int" data-source="area_rank_two" data-where="area=UPC - West" data-field="rank">—</b> จาก <b data-draw="num" data-fmt="int" data-source="area_rank_two" data-where="area=UPC - West" data-field="of">—</b> พื้นที่ อัตราปิดการขายวันที่ 7 <b data-draw="num" data-fmt="pct" data-source="closing_kpi" data-field="rate2" data-row="0">—</b> (6 พ.ย. <b data-draw="num" data-fmt="pct" data-source="closing_kpi" data-field="rate1" data-row="0">—</b>) ดูรายละเอียดด้านล่าง</p>
+  <p class="sub">ข้อมูลจากชีต POSTPAID 101 By Shop OCT '26 แท็บ 8 DAY · %ACH = ยอดขายจริง ÷ target</p>
+  <p class="take">สะสม 6–7 พ.ย. ทำได้ <b data-draw="num" data-fmt="pct" data-source="two_kpi" data-field="ach" data-row="0">—</b> ของ target 2 วัน ผลต่างจาก target <b data-draw="num" data-fmt="sint" data-source="two_kpi" data-field="gap" data-row="0">—</b> อันดับ <b data-draw="num" data-fmt="int" data-source="area_rank_two" data-where="area=UPC - West" data-field="rank">—</b> จาก <b data-draw="num" data-fmt="int" data-source="area_rank_two" data-where="area=UPC - West" data-field="of">—</b> พื้นที่ อัตราปิดการขายวันที่ 7 <b data-draw="num" data-fmt="pct" data-source="closing_kpi" data-field="rate2" data-row="0">—</b> (6 พ.ย. <b data-draw="num" data-fmt="pct" data-source="closing_kpi" data-field="rate1" data-row="0">—</b>) ดูรายละเอียดด้านล่าง</p>
   </div>
 
   <h2 class="sec" id="day5">สรุปยอดขายสะสม 2 วัน (6–7 พ.ย.)</h2>
-  <p class="sub sec-sub">ข้อมูลครบทั้งวัน วันที่ 6 และ 7 (ข้อมูล ณ 8 พ.ย.) · %ACH = ยอดขาย ÷ เป้าต่อวัน · ยอดขายจากแท็บ 8 DAY</p>
+  <p class="sub sec-sub">ข้อมูลครบทั้งวัน วันที่ 6 และ 7 (ข้อมูล ณ 8 พ.ย.) · %ACH = ยอดขาย ÷ target ต่อวัน · ยอดขายจากแท็บ 8 DAY</p>
 
   <div class="tiles">
     <div class="tile card">
       <div class="lab">ยอดขายสะสม 6–7 พ.ย.</div>
       <span class="big" data-draw="num" data-fmt="int" data-source="two_kpi" data-field="actual" data-row="0">—</span>
-      <p class="note">เป้า 2 วัน <b data-draw="num" data-fmt="int" data-source="two_kpi" data-field="target" data-row="0">—</b></p>
+      <p class="note">target 2 วัน <b data-draw="num" data-fmt="int" data-source="two_kpi" data-field="target" data-row="0">—</b></p>
     </div>
     <div class="tile card">
       <div class="lab">%ACH สะสม 2 วัน</div>
@@ -143,7 +147,7 @@ body{padding:16px}
   <div class="grid">
     <section class="card" id="areas2-card" style="grid-column:1/-1">
       <h2>%ACH สะสม 6–7 พ.ย. เทียบทุกพื้นที่</h2>
-      <p class="note">ยอดสะสม 6–7 พ.ย. ÷ เป้า 2 วัน · UPC West ไฮไลต์สี</p>
+      <p class="note">ยอดสะสม 6–7 พ.ย. ÷ target 2 วัน · UPC West ไฮไลต์สี</p>
       <div class="chart c-areas" data-draw="areas2" data-source="area_rank_two"></div>
     </section>
   </div>
@@ -151,12 +155,12 @@ body{padding:16px}
   <div class="grid">
     <section class="card" id="type-card">
       <h2>แยกตามประเภทร้าน</h2>
-      <p class="note">ยอดสะสม 6–7 พ.ย. เทียบเป้า 2 วัน · เรียงจาก %ACH ต่ำสุด</p>
+      <p class="note">ยอดสะสม 6–7 พ.ย. เทียบ target 2 วัน · เรียงจาก %ACH ต่ำสุด</p>
       <table data-source="type_mix" data-row-key="type">
         <thead><tr>
           <th data-field="type">ประเภท</th>
           <th class="n" data-field="actual">ยอดขาย</th>
-          <th class="n" data-field="target">เป้า</th>
+          <th class="n" data-field="target">target</th>
           <th class="n" data-field="ach">%ACH</th>
           <th class="n" data-field="gap">ผลต่าง</th>
         </tr></thead>
@@ -168,16 +172,16 @@ body{padding:16px}
   <div class="grid">
     <section class="card" id="shops2-card" style="grid-column:1/-1">
       <h2>รายร้านสะสม 6–7 พ.ย.</h2>
-      <p class="note">เรียงตามประเภทร้าน Matching → Hall → Non Matching → COCO แล้วเรียงตามยอดสะสมจากมากไปน้อย (เป้า = 2 วัน)</p>
+      <p class="note">เรียงตามประเภทร้าน Matching → Hall → Non Matching → COCO แล้วเรียงตามยอดสะสมจากมากไปน้อย (target = 2 วัน)</p>
       <div class="scroll">
         <table data-source="shop_two" data-row-key="shop">
           <thead><tr>
             <th data-field="shop">ร้าน</th>
             <th data-field="type">ประเภท</th>
-            <th class="n" data-field="target">เป้า</th>
+            <th class="n" data-field="target">target</th>
             <th class="n" data-field="nov6">6 พ.ย.</th>
             <th class="n" data-field="nov7">7 พ.ย.</th>
-            <th class="n" data-field="gap">ผลต่างเป้า</th>
+            <th class="n" data-field="gap">ผลต่าง target</th>
             <th class="n" data-field="ach">%ACH</th>
           </tr></thead>
           <tbody data-draw="two_body"></tbody>
@@ -188,8 +192,8 @@ body{padding:16px}
 
   <div class="grid">
     <section class="card" id="trend-card">
-      <h2>ยอดขายรายวัน เทียบเป้า</h2>
-      <p class="note">รวมทุกร้านใน UPC West · เส้นประคือเป้าต่อวัน · ตั้งแต่ 1 พ.ย. ถึง 7 พ.ย.</p>
+      <h2>ยอดขายรายวัน เทียบ target</h2>
+      <p class="note">รวมทุกร้านใน UPC West · เส้นประคือ target ต่อวัน · ตั้งแต่ 1 พ.ย. ถึง 7 พ.ย.</p>
       <div class="chart c-trend" data-draw="trend" data-source="west_days"></div>
     </section>
     <section class="card" id="areas-card">
@@ -201,8 +205,8 @@ body{padding:16px}
 
   <div class="grid">
     <section class="card" id="gaps-card">
-      <h2>ผลต่างจากเป้า รายร้าน</h2>
-      <p class="note">ยอดสะสม 6–7 พ.ย. ลบเป้า 2 วัน · เรียงจากขาดเป้ามากที่สุด</p>
+      <h2>ผลต่างจาก target รายร้าน</h2>
+      <p class="note">ยอดสะสม 6–7 พ.ย. ลบ target 2 วัน · เรียงจากขาด target มากที่สุด</p>
       <div class="chart c-gaps" data-draw="gaps" data-source="shop_two"></div>
     </section>
     
@@ -389,7 +393,7 @@ body{padding:16px}
         <thead><tr>
           <th data-field="shop"><button type="button" data-k="shop">ร้าน</button></th>
           <th data-field="type"><button type="button" data-k="type">ประเภท</button></th>
-          <th class="n" data-field="target"><button type="button" data-k="target">เป้า/วัน</button></th>
+          <th class="n" data-field="target"><button type="button" data-k="target">target/วัน</button></th>
           <th class="n" data-field="nov1"><button type="button" data-k="nov1">6 พ.ย.</button></th>
           <th class="n" data-field="nov2"><button type="button" data-k="nov2">7 พ.ย.</button></th>
           <th class="n" data-field="ach"><button type="button" data-k="ach">%ACH</button></th>
@@ -437,7 +441,7 @@ const clip = (s, n) => (s.length > n ? s.slice(0, n - 1) + '…' : s);
 dash.calc('west_days', {
   inputs: ['shops'],
   title: 'ยอดขายรายวัน UPC West',
-  description: 'รวมยอดทุกร้านต่อวัน เทียบเป้ารวมต่อวัน วันที่ 1–7 พ.ย.',
+  description: 'รวมยอดทุกร้านต่อวัน เทียบ target รวมต่อวัน วันที่ 1–7 พ.ย.',
   fn: (shops) => {
     const days = [['nov1', '1 พ.ย.'], ['nov2', '2 พ.ย.'], ['nov3', '3 พ.ย.'], ['nov4', '4 พ.ย.'], ['nov5', '5 พ.ย.'], ['nov6', '6 พ.ย.'], ['nov7', '7 พ.ย.']];
     const target = shops.reduce((s, r) => s + r.target, 0);
@@ -448,7 +452,7 @@ dash.calc('west_days', {
 dash.calc('west_kpi', {
   inputs: ['shops'],
   title: 'ตัวเลขหลัก UPC West',
-  description: 'ยอด เป้า %ACH ผลต่าง และยอดสะสม 2 วัน (1–2 พ.ย.)',
+  description: 'ยอด target %ACH ผลต่าง และยอดสะสม 2 วัน (1–2 พ.ย.)',
   fn: (shops) => {
     const sum = (k) => shops.reduce((s, r) => s + r[k], 0);
     const actual = sum('nov7'), target = sum('target'), prev = sum('nov6');
@@ -461,7 +465,7 @@ dash.calc('west_kpi', {
 dash.calc('west_cum', {
   inputs: ['shops'],
   title: 'ยอดสะสม UPC West 1–4 พ.ย.',
-  description: 'ยอดรวมทุกร้าน 1–4 พ.ย. เทียบเป้าสะสม 4 วัน และการเปลี่ยนแปลงวันที่ 6 เทียบวันที่ 3',
+  description: 'ยอดรวมทุกร้าน 1–4 พ.ย. เทียบ target สะสม 4 วัน และการเปลี่ยนแปลงวันที่ 6 เทียบวันที่ 3',
   fn: (shops) => {
     const sum = (k) => shops.reduce((s, r) => s + r[k], 0);
     const cum = sum('nov1') + sum('nov2') + sum('nov3') + sum('nov6'), cumTarget = sum('target') * 4;
@@ -473,7 +477,7 @@ dash.calc('west_cum', {
 dash.calc('area_rank_cum', {
   inputs: ['areas'],
   title: 'อันดับ %ACH สะสม 1–4 พ.ย. รายพื้นที่',
-  description: 'ยอดรวม 1–4 พ.ย. ÷ เป้า 4 วัน ของแต่ละพื้นที่ เรียงจากสูงไปต่ำ',
+  description: 'ยอดรวม 1–4 พ.ย. ÷ target 4 วัน ของแต่ละพื้นที่ เรียงจากสูงไปต่ำ',
   fn: (areas) => {
     const rows = areas.map((a) => ({area: a.area, actual: a.nov1 + a.nov2 + a.nov3 + a.nov6, target: a.target * 4,
       ach: (a.nov1 + a.nov2 + a.nov3 + a.nov6) / (a.target * 4)})).sort((x, y) => y.ach - x.ach);
@@ -484,7 +488,7 @@ dash.calc('area_rank_cum', {
 dash.calc('area_rank', {
   inputs: ['areas'],
   title: 'อันดับ %ACH รายพื้นที่',
-  description: 'ยอด 7 พ.ย. ÷ เป้าต่อวัน ของแต่ละพื้นที่ เรียงจากสูงไปต่ำ',
+  description: 'ยอด 7 พ.ย. ÷ target ต่อวัน ของแต่ละพื้นที่ เรียงจากสูงไปต่ำ',
   fn: (areas) => {
     const rows = areas.map((a) => ({area: a.area, actual: a.nov7, target: a.target, ach: a.nov7 / a.target}))
       .sort((x, y) => y.ach - x.ach);
@@ -495,7 +499,7 @@ dash.calc('area_rank', {
 dash.calc('type_mix', {
   inputs: ['shops'],
   title: 'ยอดขายแยกประเภทร้าน',
-  description: 'รวมยอดสะสม 6–7 พ.ย. และเป้า 2 วัน แยกตามประเภทร้าน',
+  description: 'รวมยอดสะสม 6–7 พ.ย. และ target 2 วัน แยกตามประเภทร้าน',
   fn: (shops) => {
     const m = {};
     shops.forEach((r) => {
@@ -510,7 +514,7 @@ dash.calc('type_mix', {
 dash.calc('shop_perf', {
   inputs: ['shops'],
   title: 'ผลงานรายร้าน',
-  description: 'ยอด 7 พ.ย. (ครบทั้งวัน) เทียบเป้าต่อวัน และเทียบยอด 6 พ.ย. ของแต่ละร้าน (ฟิลด์ nov1 = ยอดวันก่อนหน้า 6 พ.ย., nov2 = ยอดวันนี้ 7 พ.ย.)',
+  description: 'ยอด 7 พ.ย. (ครบทั้งวัน) เทียบ target ต่อวัน และเทียบยอด 6 พ.ย. ของแต่ละร้าน (ฟิลด์ nov1 = ยอดวันก่อนหน้า 6 พ.ย., nov2 = ยอดวันนี้ 7 พ.ย.)',
   fn: (shops) => shops.map((r) => ({
     shop: r.shop, type: r.type, target: r.target, nov1: r.nov6, nov2: r.nov7,
     ach: r.target ? r.nov7 / r.target : null, gap: r.nov7 - r.target,
@@ -573,9 +577,9 @@ dash.draw('trend', (el) => {
   el.replaceChildren();
   const W = Math.max(el.clientWidth, 260), H = 240, m = {t: 26, b: 30, l: 6, r: 6};
   const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`)
-    .attr('role', 'img').attr('aria-label', 'ยอดขายรายวันเทียบเป้า');
+    .attr('role', 'img').attr('aria-label', 'ยอดขายรายวันเทียบ target');
   const target = rows[0].target;
-  const lw = tw(svg, 'เป้า ' + fI(target)) + 8;
+  const lw = tw(svg, 'target ' + fI(target)) + 8;
   const right = W - m.r - lw;
   const x = d3.scaleBand(rows.map((r) => r.day), [m.l, right]).padding(0.35);
   const y = d3.scaleLinear([0, Math.max(target, d3.max(rows, (r) => r.actual)) * 1.1], [H - m.b, m.t]);
@@ -590,12 +594,12 @@ dash.draw('trend', (el) => {
     .attr('x', (r) => x(r.day) + x.bandwidth() / 2).attr('y', H - m.b + 18).attr('text-anchor', 'middle').text((r) => r.day);
   svg.append('line').attr('x1', m.l).attr('x2', right).attr('y1', y(target)).attr('y2', y(target))
     .style('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 3');
-  svg.append('text').attr('x', right + 6).attr('y', y(target) + 4).text('เป้า ' + fI(target));
+  svg.append('text').attr('x', right + 6).attr('y', y(target) + 4).text('target ' + fI(target));
   const tip = tipFor(el);
   const pad = (x.step() - x.bandwidth()) / 2;
   svg.selectAll('rect.hit').data(rows).join('rect').attr('class', 'hit')
     .attr('x', (r) => x(r.day) - pad).attr('width', x.step()).attr('y', 0).attr('height', H).style('fill', 'transparent')
-    .on('pointermove', (ev, r) => tip.show([r.day, 'ยอดขาย ' + fI(r.actual), 'เป้า ' + fI(r.target), '%ACH ' + fP(r.actual / r.target)], ev))
+    .on('pointermove', (ev, r) => tip.show([r.day, 'ยอดขาย ' + fI(r.actual), 'target ' + fI(r.target), '%ACH ' + fP(r.actual / r.target)], ev))
     .on('pointerleave', () => tip.hide());
 });
 
@@ -622,7 +626,7 @@ dash.draw('areas', (el) => {
   const tip = tipFor(el);
   svg.selectAll('rect.hit').data(rows).join('rect').attr('class', 'hit')
     .attr('x', 0).attr('width', W).attr('y', (r, i) => y(i)).attr('height', rowH).style('fill', 'transparent')
-    .on('pointermove', (ev, r) => tip.show([r.area, '%ACH ' + fP(r.ach), 'ยอดขาย ' + fI(r.actual) + ' / เป้า ' + fI(r.target), 'อันดับ ' + r.rank + ' จาก ' + r.of], ev))
+    .on('pointermove', (ev, r) => tip.show([r.area, '%ACH ' + fP(r.ach), 'ยอดขาย ' + fI(r.actual) + ' / target ' + fI(r.target), 'อันดับ ' + r.rank + ' จาก ' + r.of], ev))
     .on('pointerleave', () => tip.hide());
 });
 
@@ -634,7 +638,7 @@ dash.draw('gaps', (el) => {
   const W = Math.max(el.clientWidth, 260), rowH = 24, m = {t: 4, b: 4, r: 4};
   const H = rows.length * rowH + m.t + m.b;
   const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`)
-    .attr('role', 'img').attr('aria-label', 'ผลต่างจากเป้ารายร้าน');
+    .attr('role', 'img').attr('aria-label', 'ผลต่างจาก target รายร้าน');
   const maxName = W < 420 ? 16 : 26;
   const names = rows.map((r) => clip(short(r.shop), maxName));
   const labW = d3.max(names, (n) => tw(svg, n)) + 10;
@@ -655,7 +659,7 @@ dash.draw('gaps', (el) => {
   const tip = tipFor(el);
   svg.selectAll('rect.hit').data(rows).join('rect').attr('class', 'hit')
     .attr('x', 0).attr('width', W).attr('y', (r, i) => y(i)).attr('height', rowH).style('fill', 'transparent')
-    .on('pointermove', (ev, r) => tip.show([short(r.shop), r.type, 'ยอดขาย 7 พ.ย. ' + fI(r.total) + ' / เป้า ' + fI(r.target), 'ผลต่าง ' + fSI(r.gap)], ev))
+    .on('pointermove', (ev, r) => tip.show([short(r.shop), r.type, 'ยอดขาย 7 พ.ย. ' + fI(r.total) + ' / target ' + fI(r.target), 'ผลต่าง ' + fSI(r.gap)], ev))
     .on('pointerleave', () => tip.hide());
 });
 
@@ -931,7 +935,7 @@ dash.draw('plan', (el) => {
   // gap
   const gaps = two.filter((r) => r.gap < 0).sort((a, b) => a.gap - b.gap);
   const gapAll = gaps.reduce((s, r) => s + r.gap, 0), top5 = gaps.slice(0, 5), gap5 = top5.reduce((s, r) => s + r.gap, 0);
-  add('ตั้งเป้าที่ร้านที่ขาดมากที่สุดก่อน.', 'ร้านที่ขาดเป้ามากที่สุดในช่วง 6–7 พ.ย. จำนวน 5 ร้านคือ ' + top5.map((r) => short(r.shop) + ' (' + fSI(r.gap) + ')').join(', ') +
+  add('ตั้ง target ที่ร้านที่ขาดมากที่สุดก่อน.', 'ร้านที่ขาด target มากที่สุดในช่วง 6–7 พ.ย. จำนวน 5 ร้านคือ ' + top5.map((r) => short(r.shop) + ' (' + fSI(r.gap) + ')').join(', ') +
     ' รวม ' + fSI(gap5) + ' จากส่วนที่ขาดทั้งหมด ' + fSI(gapAll) + ' (' + fP(gapAll ? gap5 / gapAll : 0) + ')');
   // closing rate uplift
   const won7 = cl.reduce((s, r) => s + r.won7, 0), tot5 = cl.reduce((s, r) => s + r.total7, 0);
@@ -1041,7 +1045,7 @@ dash.draw('whybody', (tb) => {
 dash.calc('two_kpi', {
   inputs: ['shops'],
   title: 'ตัวเลขหลักสะสม 6–7 พ.ย.',
-  description: 'ยอดรวมทุกร้านสะสม 6–7 พ.ย. เทียบเป้า 2 วัน และเทียบยอดวันที่ 6 กับ 7',
+  description: 'ยอดรวมทุกร้านสะสม 6–7 พ.ย. เทียบ target 2 วัน และเทียบยอดวันที่ 6 กับ 7',
   fn: (shops) => {
     const sum = (k) => shops.reduce((s, r) => s + r[k], 0);
     const a4 = sum('nov6'), a5 = sum('nov7'), t = sum('target') * 2, actual = a4 + a5, target = t;
@@ -1053,7 +1057,7 @@ dash.calc('two_kpi', {
 dash.calc('area_rank_two', {
   inputs: ['areas'],
   title: 'อันดับ %ACH สะสม 6–7 พ.ย. รายพื้นที่',
-  description: 'ยอดสะสม 6–7 พ.ย. ÷ เป้า 2 วัน ของแต่ละพื้นที่ เรียงจากสูงไปต่ำ',
+  description: 'ยอดสะสม 6–7 พ.ย. ÷ target 2 วัน ของแต่ละพื้นที่ เรียงจากสูงไปต่ำ',
   fn: (areas) => {
     const rows = areas.map((a) => ({area: a.area, actual: a.nov6 + a.nov7, target: a.target * 2, ach: (a.nov6 + a.nov7) / (a.target * 2)}))
       .sort((x, y) => y.ach - x.ach);
@@ -1064,7 +1068,7 @@ dash.calc('area_rank_two', {
 dash.calc('shop_two', {
   inputs: ['shops'],
   title: 'ผลงานรายร้านสะสม 6–7 พ.ย.',
-  description: 'ยอดสะสม 6–7 พ.ย. เทียบเป้า 2 วัน พร้อมยอดแยกรายวันของแต่ละร้าน',
+  description: 'ยอดสะสม 6–7 พ.ย. เทียบ target 2 วัน พร้อมยอดแยกรายวันของแต่ละร้าน',
   fn: (shops) => shops.map((s) => { const tot = s.nov6 + s.nov7, tg = s.target * 2; return {shop: s.shop, target: tg, nov6: s.nov6, nov7: s.nov7, total: tot,
     ach: tg ? tot / tg : null, gap: tot - tg, type: s.type}; }).sort((a, b) => b.total - a.total)
 });
@@ -1073,7 +1077,7 @@ dash.calc('shop_two', {
 dash.calc('day5_kpi', {
   inputs: ['shops'],
   title: 'ตัวเลขหลักวันที่ 7',
-  description: 'ยอดรวมทุกร้านของ 7 พ.ย. ครบทั้งวัน เทียบเป้าต่อวัน และยอดสะสม 6–7 พ.ย.',
+  description: 'ยอดรวมทุกร้านของ 7 พ.ย. ครบทั้งวัน เทียบ target ต่อวัน และยอดสะสม 6–7 พ.ย.',
   fn: (shops) => {
     const sum = (k) => shops.reduce((s, r) => s + r[k], 0);
     const actual = sum('nov7'), target = sum('target'), cum = sum('nov6') + actual;
@@ -1084,7 +1088,7 @@ dash.calc('day5_kpi', {
 dash.calc('area_rank5', {
   inputs: ['areas'],
   title: 'อันดับ %ACH วันที่ 7 รายพื้นที่',
-  description: 'ยอด 7 พ.ย. ครบทั้งวัน ÷ เป้าต่อวัน ของแต่ละพื้นที่ เรียงจากสูงไปต่ำ',
+  description: 'ยอด 7 พ.ย. ครบทั้งวัน ÷ target ต่อวัน ของแต่ละพื้นที่ เรียงจากสูงไปต่ำ',
   fn: (areas) => {
     const rows = areas.map((a) => ({area: a.area, actual: a.nov7, target: a.target, ach: a.nov7 / a.target}))
       .sort((x, y) => y.ach - x.ach);
@@ -1095,7 +1099,7 @@ dash.calc('area_rank5', {
 dash.calc('shop_day5', {
   inputs: ['shops'],
   title: 'ผลงานรายร้านวันที่ 7',
-  description: 'ยอด 7 พ.ย. เทียบเป้าต่อวัน และยอด 6 พ.ย.',
+  description: 'ยอด 7 พ.ย. เทียบ target ต่อวัน และยอด 6 พ.ย.',
   fn: (shops) => shops.map((s) => ({shop: s.shop, target: s.target, nov7: s.nov7, nov6: s.nov6,
     ach: s.target ? s.nov7 / s.target : null})).sort((a, b) => b.nov7 - a.nov7)
 });
@@ -1104,7 +1108,7 @@ dash.calc('shop_day5', {
 dash.calc('day4_kpi', {
   inputs: ['shops'],
   title: 'ตัวเลขหลักวันที่ 6',
-  description: 'ยอดรวมทุกร้านของ 6 พ.ย. (สิ้นวัน) เทียบเป้าต่อวัน',
+  description: 'ยอดรวมทุกร้านของ 6 พ.ย. (สิ้นวัน) เทียบ target ต่อวัน',
   fn: (shops) => {
     const actual = shops.reduce((s, r) => s + r.nov6, 0), target = shops.reduce((s, r) => s + r.target, 0);
     return [{actual, target, ach: actual / target, remain: target - actual, gap: actual - target}];
@@ -1114,7 +1118,7 @@ dash.calc('day4_kpi', {
 dash.calc('area_rank4', {
   inputs: ['areas'],
   title: 'อันดับ %ACH วันที่ 6 รายพื้นที่',
-  description: 'ยอด 6 พ.ย. (สิ้นวัน) ÷ เป้าต่อวัน ของแต่ละพื้นที่ เรียงจากสูงไปต่ำ',
+  description: 'ยอด 6 พ.ย. (สิ้นวัน) ÷ target ต่อวัน ของแต่ละพื้นที่ เรียงจากสูงไปต่ำ',
   fn: (areas) => {
     const rows = areas.map((a) => ({area: a.area, actual: a.nov6, target: a.target, ach: a.nov6 / a.target}))
       .sort((x, y) => y.ach - x.ach);
@@ -1142,7 +1146,7 @@ dash.calc('samehour_rate', {
 dash.calc('shop_day4', {
   inputs: ['shops', 'closing_shops'],
   title: 'ผลงานรายร้านวันที่ 6',
-  description: 'ยอด 6 พ.ย. เทียบเป้าต่อวัน ร่วมกับจำนวนที่ปิดได้ในฟอร์ม',
+  description: 'ยอด 6 พ.ย. เทียบ target ต่อวัน ร่วมกับจำนวนที่ปิดได้ในฟอร์ม',
   fn: (shops, closing) => {
     const c = new Map(closing.map((r) => [r.shop, r]));
     return shops.map((s) => {
@@ -1187,7 +1191,7 @@ dash.draw('areas4', (el) => {
   const tip = tipFor(el);
   svg.selectAll('rect.hit').data(rows).join('rect').attr('class', 'hit')
     .attr('x', 0).attr('width', W).attr('y', (r, i) => y(i)).attr('height', rowH).style('fill', 'transparent')
-    .on('pointermove', (ev, r) => tip.show([r.area, '%ACH ' + fP(r.ach), 'ยอดขาย ' + fI(r.actual) + ' / เป้า ' + fI(r.target), 'อันดับ ' + r.rank + ' จาก ' + r.of], ev))
+    .on('pointermove', (ev, r) => tip.show([r.area, '%ACH ' + fP(r.ach), 'ยอดขาย ' + fI(r.actual) + ' / target ' + fI(r.target), 'อันดับ ' + r.rank + ' จาก ' + r.of], ev))
     .on('pointerleave', () => tip.hide());
 });
 
@@ -1213,7 +1217,7 @@ dash.draw('areas5', (el) => {
   const tip = tipFor(el);
   svg.selectAll('rect.hit').data(rows).join('rect').attr('class', 'hit')
     .attr('x', 0).attr('width', W).attr('y', (r, i) => y(i)).attr('height', rowH).style('fill', 'transparent')
-    .on('pointermove', (ev, r) => tip.show([r.area, '%ACH ' + fP(r.ach), 'ยอดขาย ' + fI(r.actual) + ' / เป้า ' + fI(r.target), 'อันดับ ' + r.rank + ' จาก ' + r.of], ev))
+    .on('pointermove', (ev, r) => tip.show([r.area, '%ACH ' + fP(r.ach), 'ยอดขาย ' + fI(r.actual) + ' / target ' + fI(r.target), 'อันดับ ' + r.rank + ' จาก ' + r.of], ev))
     .on('pointerleave', () => tip.hide());
 });
 dash.draw('areas2', (el) => {
@@ -1238,7 +1242,7 @@ dash.draw('areas2', (el) => {
   const tip = tipFor(el);
   svg.selectAll('rect.hit').data(rows).join('rect').attr('class', 'hit')
     .attr('x', 0).attr('width', W).attr('y', (r, i) => y(i)).attr('height', rowH).style('fill', 'transparent')
-    .on('pointermove', (ev, r) => tip.show([r.area, '%ACH ' + fP(r.ach), 'ยอดขาย 7 พ.ย. ' + fI(r.actual) + ' / เป้า ' + fI(r.target), 'อันดับ ' + r.rank + ' จาก ' + r.of], ev))
+    .on('pointermove', (ev, r) => tip.show([r.area, '%ACH ' + fP(r.ach), 'ยอดขาย 7 พ.ย. ' + fI(r.actual) + ' / target ' + fI(r.target), 'อันดับ ' + r.rank + ' จาก ' + r.of], ev))
     .on('pointerleave', () => tip.hide());
 });
 dash.draw('two_body', (tb) => {
