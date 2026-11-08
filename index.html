@@ -103,6 +103,8 @@ body{padding:16px}
 </style></head><body>
 <p class="wrap-note">ข้อมูลครบทั้งวันของวันที่ 6 และ 7 พ.ย. 2569 (ดึงเมื่อ 8 พ.ย.) · หน้านี้เป็นภาพ ณ เวลาดังกล่าว ไม่อัปเดตอัตโนมัติ</p>
 
+
+
 <div class="uw">
   <div class="hero">
   <h1>UPC West: ยอดขายสะสม 6–7 พ.ย.</h1>
@@ -161,11 +163,12 @@ body{padding:16px}
     </section>
     <section class="card" id="shops2-card">
       <h2>รายร้านสะสม 6–7 พ.ย.</h2>
-      <p class="note">เรียงตามยอดสะสม 2 วัน จากมากไปน้อย (เป้า = 2 วัน)</p>
+      <p class="note">เรียงตามประเภทร้าน Matching → Hall → Non Matching → COCO แล้วเรียงตามยอดสะสมจากมากไปน้อย (เป้า = 2 วัน)</p>
       <div class="scroll">
         <table data-source="shop_two" data-row-key="shop">
           <thead><tr>
             <th data-field="shop">ร้าน</th>
+            <th data-field="type">ประเภท</th>
             <th class="n" data-field="target">เป้า</th>
             <th class="n" data-field="nov6">6 พ.ย.</th>
             <th class="n" data-field="nov7">7 พ.ย.</th>
@@ -1235,8 +1238,11 @@ dash.draw('areas2', (el) => {
 });
 dash.draw('two_body', (tb) => {
   const rows = ready(tb, 'shop_two'); tb.replaceChildren(); if (!rows) return;
-  rows.forEach((r) => addRow(tb, r.shop, [[short(r.shop)], [fI(r.target), 'n'], [fI(r.nov6), 'n'], [fI(r.nov7), 'n'],
-    [fSI(r.gap), 'n'], [r.ach == null ? '—' : fP(r.ach), 'n']]));
+  const ORD = ['Matching', 'DTAC HALL', 'Non Matching', 'DTAC COCO'], LBL = {'DTAC HALL': 'Hall', 'DTAC COCO': 'COCO'};
+  const oi = (t) => { const i = ORD.indexOf(t); return i < 0 ? 99 : i; };
+  [...rows].sort((a, b) => oi(a.type) - oi(b.type) || b.total - a.total)
+    .forEach((r) => addRow(tb, r.shop, [[short(r.shop)], [LBL[r.type] || r.type], [fI(r.target), 'n'], [fI(r.nov6), 'n'], [fI(r.nov7), 'n'],
+      [fSI(r.gap), 'n'], [r.ach == null ? '—' : fP(r.ach), 'n']]));
 });
 
 dash.draw('day5body', (tb) => {
