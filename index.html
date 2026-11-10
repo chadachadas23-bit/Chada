@@ -234,6 +234,27 @@ body{padding:16px}
 .pm-on .uw .tile .big{font-size:3.2rem}
 .pm-on .uw .bt{max-height:none}
 </style>
+
+
+<style id="pm-css">
+.uw .pm-btn{margin-top:10px;padding:8px 16px;border:0;border-radius:999px;background:var(--g-main);color:#fff;font:600 14px/1 Sarabun,system-ui,sans-serif;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.uw .pm-btn:hover{background:var(--g-deep)}
+.uw .pm-bar{display:none}
+.pm-on{overflow:hidden}
+.pm-on .uw{position:fixed;inset:0;z-index:9999;overflow:auto;padding:28px 6vw 84px;background:var(--color-panel,#fff);zoom:1.12}
+.pm-on .uw>*{display:none!important}
+.pm-on .uw>.pm-wrap{display:block!important;max-width:1280px;margin:0 auto}
+.pm-on .uw .grid>*:not(.pm-cur){display:none!important}
+.pm-on .uw .grid{display:block}
+.pm-on .uw .pm-bar{display:flex!important;position:fixed;left:0;right:0;bottom:0;z-index:10000;align-items:center;justify-content:center;gap:14px;padding:12px;background:var(--g-dark);color:#fff;font:600 15px Sarabun,system-ui,sans-serif;zoom:.9}
+.pm-bar button{border:0;border-radius:8px;padding:8px 18px;background:var(--g-main);color:#fff;font:600 15px Sarabun,system-ui,sans-serif;cursor:pointer}
+.pm-bar button:hover{background:var(--g-mid)}
+.pm-bar .pm-x{background:#b03a2e}
+.pm-bar span{min-width:70px;text-align:center}
+.pm-on .uw .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.pm-on .uw .tile .big{font-size:3.2rem}
+.pm-on .uw .bt{max-height:none}
+</style>
 <div class="uw">
   <div class="hero">
   <h1>UPC West: ยอดขายสะสม 9–10 พ.ย.</h1>
@@ -267,6 +288,36 @@ body{padding:16px}
       <p class="note">ยอดระหว่างวัน · ยังไม่ครบทั้งวัน</p>
     </div>
   </div>
+
+  <section class="card" id="offer-card" style="margin-bottom:var(--cds-gap-md)">
+      <h2>ประเภทการนำเสนอที่ปิดการขายได้ (จำนวนเบอร์)</h2>
+      <p class="note">UPC West · นับจำนวนเบอร์ที่ปิดได้ แยกตามประเภทการนำเสนอ · 10 พ.ย.* ถึง 19:46</p>
+      <table data-source="offer_sum" data-row-key="offer">
+        <thead><tr>
+          <th data-field="offer">ประเภทการนำเสนอ</th>
+          <th class="n" data-field="d9">9 พ.ย.</th>
+          <th class="n" data-field="d10">10 พ.ย.*</th>
+          <th class="n" data-field="tot">รวม 9–10</th>
+          <th class="n" data-field="share">สัดส่วน</th>
+        </tr></thead>
+        <tbody data-draw="offerbody"></tbody>
+      </table>
+      <h3 class="subh">แยกตามสาขา · จำนวนเบอร์ที่ปิดได้ สะสม 9–10 พ.ย.</h3>
+      <div class="scroll">
+      <table data-source="offer_shops" data-row-key="shop">
+        <thead><tr>
+          <th data-field="shop">สาขา</th>
+          <th class="n" data-field="a">Device Bundling</th>
+          <th class="n" data-field="b">Sim Only (Mass)</th>
+          <th class="n" data-field="c">Sim Only (เบอร์สวย)</th>
+          <th class="n" data-field="d">Migrate</th>
+          <th class="n" data-field="e">MNP</th>
+          <th class="n" data-field="t">รวม</th>
+        </tr></thead>
+        <tbody data-draw="offershopbody"></tbody>
+      </table>
+      </div>
+  </section>
 
   <div class="grid">
     <section class="card" id="areas2-card" style="grid-column:1/-1">
@@ -440,36 +491,6 @@ body{padding:16px}
         <tbody data-draw="closebody"></tbody>
       </table>
     </div>
-  </section>
-
-  <section class="card" id="offer-card" style="margin-bottom:var(--cds-gap-md)">
-      <h2>ประเภทการนำเสนอที่ปิดการขายได้ (จำนวนเบอร์)</h2>
-      <p class="note">UPC West · นับจำนวนเบอร์ที่ปิดได้ แยกตามประเภทการนำเสนอ · 10 พ.ย.* ถึง 19:46</p>
-      <table data-source="offer_sum" data-row-key="offer">
-        <thead><tr>
-          <th data-field="offer">ประเภทการนำเสนอ</th>
-          <th class="n" data-field="d9">9 พ.ย.</th>
-          <th class="n" data-field="d10">10 พ.ย.*</th>
-          <th class="n" data-field="tot">รวม 9–10</th>
-          <th class="n" data-field="share">สัดส่วน</th>
-        </tr></thead>
-        <tbody data-draw="offerbody"></tbody>
-      </table>
-      <h3 class="subh">แยกตามสาขา · จำนวนเบอร์ที่ปิดได้ สะสม 9–10 พ.ย.</h3>
-      <div class="scroll">
-      <table data-source="offer_shops" data-row-key="shop">
-        <thead><tr>
-          <th data-field="shop">สาขา</th>
-          <th class="n" data-field="a">Device Bundling</th>
-          <th class="n" data-field="b">Sim Only (Mass)</th>
-          <th class="n" data-field="c">Sim Only (เบอร์สวย)</th>
-          <th class="n" data-field="d">Migrate</th>
-          <th class="n" data-field="e">MNP</th>
-          <th class="n" data-field="t">รวม</th>
-        </tr></thead>
-        <tbody data-draw="offershopbody"></tbody>
-      </table>
-      </div>
   </section>
 
   <section class="card" id="closedays-card" style="margin-bottom:var(--cds-gap-md)">
