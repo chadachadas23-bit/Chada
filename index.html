@@ -169,6 +169,8 @@ body{padding:16px}
 
 
 
+
+
 <div class="uw">
   <div class="hero">
   <h1>UPC West: ยอดขายสะสม 9–10 พ.ย.</h1>
@@ -311,6 +313,36 @@ body{padding:16px}
     </section>
   </div>
 
+  <section class="card" id="channel-card" style="margin-bottom:var(--cds-gap-md)">
+      <h2>แยกตามช่องทางการขาย</h2>
+      <p class="note">UPC West · เรียงตามจำนวนรายการ 10 พ.ย. (ถึง 18:43)</p>
+      <table data-source="channel_perf" data-row-key="channel">
+        <thead><tr>
+          <th data-field="channel">ช่องทาง</th>
+          <th class="n" data-field="total2">รายการ</th>
+          <th class="n" data-field="won2">ปิดได้</th>
+          <th class="n" data-field="rate2">อัตราปิด</th>
+          <th class="n" data-field="rate1">9 พ.ย.</th>
+        </tr></thead>
+        <tbody data-draw="chanbody"></tbody>
+      </table>
+      <h3 class="subh">แยกตามช่องทางและสาขา (10 พ.ย.) · แต่ละช่องคือ ปิดได้ / รายการ · เรียงตามจำนวนรายการรวม</h3>
+      <div class="scroll">
+      <table data-source="channel_shops" data-row-key="shop">
+        <thead><tr>
+          <th data-field="shop">สาขา</th>
+          <th class="n" data-field="walkin">Walk-In</th>
+          <th class="n" data-field="s2s">Service To Sale</th>
+          <th class="n" data-field="tele">Telesale</th>
+          <th class="n" data-field="social">Social Media</th>
+          <th class="n" data-field="total10">รวม</th>
+          <th class="n" data-field="rate10">อัตราปิดรวม</th>
+        </tr></thead>
+        <tbody data-draw="chanshopbody"></tbody>
+      </table>
+      </div>
+    </section>
+
   <div class="grid">
     <section class="card" id="hours-card" style="grid-column:1/-1">
       <h2>จำนวนที่ปิดการขายได้ รายชั่วโมง เทียบแต่ละวัน</h2>
@@ -345,36 +377,6 @@ body{padding:16px}
       </table>
     </div>
   </section>
-
-  <section class="card" id="channel-card" style="margin-bottom:var(--cds-gap-md)">
-      <h2>แยกตามช่องทางการขาย</h2>
-      <p class="note">UPC West · เรียงตามจำนวนรายการ 10 พ.ย. (ถึง 18:43)</p>
-      <table data-source="channel_perf" data-row-key="channel">
-        <thead><tr>
-          <th data-field="channel">ช่องทาง</th>
-          <th class="n" data-field="total2">รายการ</th>
-          <th class="n" data-field="won2">ปิดได้</th>
-          <th class="n" data-field="rate2">อัตราปิด</th>
-          <th class="n" data-field="rate1">9 พ.ย.</th>
-        </tr></thead>
-        <tbody data-draw="chanbody"></tbody>
-      </table>
-      <h3 class="subh">แยกตามช่องทางและสาขา (10 พ.ย.) · แต่ละช่องคือ ปิดได้ / รายการ · เรียงตามจำนวนรายการรวม</h3>
-      <div class="scroll">
-      <table data-source="channel_shops" data-row-key="shop">
-        <thead><tr>
-          <th data-field="shop">สาขา</th>
-          <th class="n" data-field="walkin">Walk-In</th>
-          <th class="n" data-field="s2s">Service To Sale</th>
-          <th class="n" data-field="tele">Telesale</th>
-          <th class="n" data-field="social">Social Media</th>
-          <th class="n" data-field="total10">รวม</th>
-          <th class="n" data-field="rate10">อัตราปิดรวม</th>
-        </tr></thead>
-        <tbody data-draw="chanshopbody"></tbody>
-      </table>
-      </div>
-    </section>
 
   <section class="card" id="closedays-card" style="margin-bottom:var(--cds-gap-md)">
     <h2>การปิดการขายรายวัน รายสาขา</h2>
