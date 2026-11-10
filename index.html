@@ -171,11 +171,33 @@ body{padding:16px}
 
 
 
+
+
+<style id="pm-css">
+.uw .pm-btn{margin-top:10px;padding:8px 16px;border:0;border-radius:999px;background:var(--g-main);color:#fff;font:600 14px/1 Sarabun,system-ui,sans-serif;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.uw .pm-btn:hover{background:var(--g-deep)}
+.uw .pm-bar{display:none}
+.pm-on{overflow:hidden}
+.pm-on .uw{position:fixed;inset:0;z-index:9999;overflow:auto;padding:28px 6vw 84px;background:var(--color-panel,#fff);zoom:1.12}
+.pm-on .uw>*{display:none!important}
+.pm-on .uw>.pm-wrap{display:block!important;max-width:1280px;margin:0 auto}
+.pm-on .uw .grid>*:not(.pm-cur){display:none!important}
+.pm-on .uw .grid{display:block}
+.pm-on .uw .pm-bar{display:flex!important;position:fixed;left:0;right:0;bottom:0;z-index:10000;align-items:center;justify-content:center;gap:14px;padding:12px;background:var(--g-dark);color:#fff;font:600 15px Sarabun,system-ui,sans-serif;zoom:.9}
+.pm-bar button{border:0;border-radius:8px;padding:8px 18px;background:var(--g-main);color:#fff;font:600 15px Sarabun,system-ui,sans-serif;cursor:pointer}
+.pm-bar button:hover{background:var(--g-mid)}
+.pm-bar .pm-x{background:#b03a2e}
+.pm-bar span{min-width:70px;text-align:center}
+.pm-on .uw .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.pm-on .uw .tile .big{font-size:3.2rem}
+.pm-on .uw .bt{max-height:none}
+</style>
 <div class="uw">
   <div class="hero">
   <h1>UPC West: ยอดขายสะสม 9–10 พ.ย.</h1>
   <p class="sub">ข้อมูลจากชีต POSTPAID 101 By Shop OCT '26 แท็บ 8 DAY · %ACH = ยอดขายจริง ÷ target</p>
   <p class="take">สะสม 9–10 พ.ย. ทำได้ <b data-draw="num" data-fmt="pct" data-source="two_kpi" data-field="ach" data-row="0">—</b> ของ target 2 วัน ผลต่างจาก target <b data-draw="num" data-fmt="sint" data-source="two_kpi" data-field="gap" data-row="0">—</b> อันดับ <b data-draw="num" data-fmt="int" data-source="area_rank_two" data-where="area=UPC - West" data-field="rank">—</b> จาก <b data-draw="num" data-fmt="int" data-source="area_rank_two" data-where="area=UPC - West" data-field="of">—</b> พื้นที่ อัตราปิดการขายวันที่ 10 <b data-draw="num" data-fmt="pct" data-source="closing_kpi" data-field="rate2" data-row="0">—</b> (9 พ.ย. <b data-draw="num" data-fmt="pct" data-source="closing_kpi" data-field="rate1" data-row="0">—</b>) ดูรายละเอียดด้านล่าง</p>
+  <button class="pm-btn" id="pm-btn" type="button">▶ โหมดนำเสนอ</button>
   </div>
 
   <h2 class="sec" id="day5">สรุปยอดขายสะสม 2 วัน (9–10 พ.ย.)</h2>
@@ -497,6 +519,7 @@ body{padding:16px}
       </table>
     </div>
   </section>
+  <div class="pm-bar" id="pm-bar"><button type="button" id="pm-prev">◀ ก่อนหน้า</button><span id="pm-n"></span><button type="button" id="pm-next">ถัดไป ▶</button><button type="button" class="pm-x" id="pm-exit">ออก (Esc)</button></div>
 </div>
 
 <script>// https://d3js.org v7.9.0 Copyright 2010-2023 Mike Bostock
@@ -1417,6 +1440,36 @@ dash.draw('day5body', (tb) => {
     [r.ach == null ? '—' : fP(r.ach), 'n'], [fI(r.nov9), 'n']]));
 });
 
+
+(function () {
+  const root = document.querySelector('.uw'); if (!root) return;
+  let slides = [], idx = 0, on = false;
+  const wrapOf = (el) => { while (el.parentElement && el.parentElement !== root) el = el.parentElement; return el; };
+  const collect = () => [...root.querySelectorAll('.hero, .tiles, section.card')].filter((e) => !e.closest('.pm-bar'));
+  const show = (k) => {
+    idx = (k + slides.length) % slides.length;
+    root.querySelectorAll('.pm-wrap').forEach((e) => e.classList.remove('pm-wrap'));
+    root.querySelectorAll('.pm-cur').forEach((e) => e.classList.remove('pm-cur'));
+    const el = slides[idx]; el.classList.add('pm-cur'); wrapOf(el).classList.add('pm-wrap');
+    document.getElementById('pm-n').textContent = (idx + 1) + ' / ' + slides.length;
+    const bar = document.getElementById('pm-bar'); bar.classList.add('pm-wrap');
+    root.scrollTop = 0;
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 60);
+  };
+  const open = () => { slides = collect(); on = true; document.documentElement.classList.add('pm-on'); document.body.classList.add('pm-on'); show(0); };
+  const close = () => { on = false; document.documentElement.classList.remove('pm-on'); document.body.classList.remove('pm-on');
+    root.querySelectorAll('.pm-wrap,.pm-cur').forEach((e) => e.classList.remove('pm-wrap', 'pm-cur')); setTimeout(() => window.dispatchEvent(new Event('resize')), 60); };
+  document.getElementById('pm-btn').addEventListener('click', open);
+  document.getElementById('pm-next').addEventListener('click', () => show(idx + 1));
+  document.getElementById('pm-prev').addEventListener('click', () => show(idx - 1));
+  document.getElementById('pm-exit').addEventListener('click', close);
+  document.addEventListener('keydown', (e) => {
+    if (!on) return;
+    if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); show(idx + 1); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); show(idx - 1); }
+    else if (e.key === 'Escape') close();
+  });
+})();
 
 window.__runAll();
 let _t; window.addEventListener('resize', () => { clearTimeout(_t); _t = setTimeout(window.__runAll, 150); });
