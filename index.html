@@ -121,8 +121,19 @@ body{padding:16px}
 .uw .battle tr.focus-row td{background:#e8eef7;font-weight:700}
 .uw .battle .neg{color:#b03a2e}
 .uw .bt{max-height:none;overflow-x:auto}
+#type-card thead th{background:var(--g-main);color:#fff;border-bottom:0}
+#type-card tbody td:first-child{font-weight:600;border-left:6px solid var(--tc,var(--g-mid))}
+#type-card tbody td{padding-top:10px;padding-bottom:10px}
+#type-card tbody tr.tot td{background:var(--g-wash);color:var(--g-ink);font-size:1.05em}
+#type-card tbody tr.tot td:first-child{border-left-color:var(--g-main)}
 </style></head><body>
 <p class="wrap-note">ข้อมูลวันที่ 9–10 พ.ย. 2569 (ดึงเมื่อ 10 พ.ย. 18:43 · วันที่ 10 เป็นยอดระหว่างวัน) · หน้านี้เป็นภาพ ณ เวลาดังกล่าว ไม่อัปเดตอัตโนมัติ</p>
+
+
+
+
+
+
 
 
 
@@ -748,10 +759,18 @@ const signCls = (v) => 'n' + (v == null ? '' : v < 0 ? ' neg' : ' pos');
 
 dash.draw('typebody', (tb) => {
   const rows = ready(tb, 'type_mix'); tb.replaceChildren(); if (!rows) return;
-  rows.forEach((r) => addRow(tb, r.type, [[r.type], [fI(r.actual), 'n'], [fI(r.target), 'n'], [fP(r.ach), 'n'], [fSI(r.gap), signCls(r.gap)]]));
+  const pal = {'Matching': '#1f7a5c', 'DTAC HALL': '#d9822b', 'Non Matching': '#7a5bb5', 'DTAC COCO': '#c2457a'};
+  const byAch = [...rows].sort((x, y) => y.ach - x.ach);
+  const tone = (v) => `rgba(${v >= 0 ? '31,150,90' : '214,64,64'},.14)`;
+  rows.forEach((r) => {
+    addRow(tb, r.type, [[r.type], [fI(r.actual), 'n'], [fI(r.target), 'n'], [fP(r.ach), 'n'], [fSI(r.gap), signCls(r.gap)]]);
+    const tr = tb.lastElementChild; tr.style.setProperty('--tc', pal[r.type] || '#5b7fb5');
+    const c = tr.children; c[3].style.background = heat(byAch.indexOf(r) + 1, rows.length); c[3].style.fontWeight = '700'; c[3].style.color = '#1a1a1a';
+    c[4].style.background = tone(r.gap); c[4].style.fontWeight = '600';
+  });
   const a = rows.reduce((s, r) => s + r.actual, 0), t = rows.reduce((s, r) => s + r.target, 0);
   addRow(tb, '__total', [['Total'], [fI(a), 'n'], [fI(t), 'n'], [t ? fP(a / t) : '—', 'n'], [fSI(a - t), signCls(a - t)]]);
-  const tr = tb.lastElementChild; tr.style.fontWeight = '700'; tr.querySelectorAll('td').forEach((td) => { td.style.borderTop = '2px solid var(--g-main)'; });
+  const tr = tb.lastElementChild; tr.classList.add('tot'); tr.style.fontWeight = '700';
 });
 
 const SORT = {key: 'gap', dir: 1};
