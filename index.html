@@ -152,6 +152,8 @@ body{padding:16px}
 
 
 
+
+
 <div class="uw">
   <div class="hero">
   <h1>UPC West: ยอดขายสะสม 9–10 พ.ย.</h1>
@@ -217,11 +219,11 @@ body{padding:16px}
 
   <div class="grid">
     <section class="card" id="type-card">
-      <h2>แยกตามประเภทร้าน</h2>
+      <h2>Type shop</h2>
       <p class="note">ยอดสะสม 9–10 พ.ย. เทียบ target 2 วัน · เรียงจาก %ACH ต่ำสุด</p>
       <table data-source="type_mix" data-row-key="type">
         <thead><tr>
-          <th data-field="type">ประเภท</th>
+          <th data-field="type">Type shop</th>
           <th class="n" data-field="actual">ยอดขาย</th>
           <th class="n" data-field="target">target</th>
           <th class="n" data-field="ach">%ACH</th>
@@ -747,6 +749,9 @@ const signCls = (v) => 'n' + (v == null ? '' : v < 0 ? ' neg' : ' pos');
 dash.draw('typebody', (tb) => {
   const rows = ready(tb, 'type_mix'); tb.replaceChildren(); if (!rows) return;
   rows.forEach((r) => addRow(tb, r.type, [[r.type], [fI(r.actual), 'n'], [fI(r.target), 'n'], [fP(r.ach), 'n'], [fSI(r.gap), signCls(r.gap)]]));
+  const a = rows.reduce((s, r) => s + r.actual, 0), t = rows.reduce((s, r) => s + r.target, 0);
+  addRow(tb, '__total', [['Total'], [fI(a), 'n'], [fI(t), 'n'], [t ? fP(a / t) : '—', 'n'], [fSI(a - t), signCls(a - t)]]);
+  const tr = tb.lastElementChild; tr.style.fontWeight = '700'; tr.querySelectorAll('td').forEach((td) => { td.style.borderTop = '2px solid var(--g-main)'; });
 });
 
 const SORT = {key: 'gap', dir: 1};
