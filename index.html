@@ -167,6 +167,8 @@ body{padding:16px}
 
 
 
+
+
 <div class="uw">
   <div class="hero">
   <h1>UPC West: ยอดขายสะสม 9–10 พ.ย.</h1>
@@ -325,7 +327,26 @@ body{padding:16px}
         <tbody data-draw="daysumbody"></tbody>
       </table>
     </section>
-    <section class="card" id="channel-card" style="grid-column:1/-1">
+  </div>
+
+  <section class="card" id="closeshops-card" style="margin-bottom:var(--cds-gap-md)">
+    <h2>การปิดการขายรายร้าน</h2>
+    <p class="note">UPC West · เรียงตามจำนวนรายการ 10 พ.ย. (ถึง 18:43)</p>
+    <div class="scroll">
+      <table data-source="shop_close" data-row-key="shop">
+        <thead><tr>
+          <th data-field="shop">ร้าน</th>
+          <th class="n" data-field="total2">รายการ</th>
+          <th class="n" data-field="won2">ปิดได้</th>
+          <th class="n" data-field="rate2">อัตราปิด</th>
+          <th class="n" data-field="rate1">9 พ.ย.</th>
+        </tr></thead>
+        <tbody data-draw="closebody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card" id="channel-card" style="margin-bottom:var(--cds-gap-md)">
       <h2>แยกตามช่องทางการขาย</h2>
       <p class="note">UPC West · เรียงตามจำนวนรายการ 10 พ.ย. (ถึง 18:43)</p>
       <table data-source="channel_perf" data-row-key="channel">
@@ -354,24 +375,6 @@ body{padding:16px}
       </table>
       </div>
     </section>
-  </div>
-
-  <section class="card" id="closeshops-card" style="margin-bottom:var(--cds-gap-md)">
-    <h2>การปิดการขายรายร้าน</h2>
-    <p class="note">UPC West · เรียงตามจำนวนรายการ 10 พ.ย. (ถึง 18:43)</p>
-    <div class="scroll">
-      <table data-source="shop_close" data-row-key="shop">
-        <thead><tr>
-          <th data-field="shop">ร้าน</th>
-          <th class="n" data-field="total2">รายการ</th>
-          <th class="n" data-field="won2">ปิดได้</th>
-          <th class="n" data-field="rate2">อัตราปิด</th>
-          <th class="n" data-field="rate1">9 พ.ย.</th>
-        </tr></thead>
-        <tbody data-draw="closebody"></tbody>
-      </table>
-    </div>
-  </section>
 
   <section class="card" id="closedays-card" style="margin-bottom:var(--cds-gap-md)">
     <h2>การปิดการขายรายวัน รายสาขา</h2>
