@@ -847,6 +847,28 @@ body{padding:16px}
 #closedays-card td,#closedays-card th{white-space:nowrap}
 .pm-on .uw .bt{max-height:none}
 </style>
+
+
+<style id="pm-css">
+.uw .pm-btn{margin-top:10px;padding:8px 16px;border:0;border-radius:999px;background:var(--g-main);color:#fff;font:600 14px/1 Sarabun,system-ui,sans-serif;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.uw .pm-btn:hover{background:var(--g-deep)}
+.uw .pm-bar{display:none}
+.pm-on{overflow:hidden}
+.pm-on .uw{position:fixed;inset:0;z-index:9999;overflow:auto;padding:28px 6vw 84px;background:var(--color-panel,#fff);zoom:1.12}
+.pm-on .uw>*{display:none!important}
+.pm-on .uw>.pm-wrap{display:block!important;max-width:1280px;margin:0 auto}
+.pm-on .uw .grid>*:not(.pm-cur){display:none!important}
+.pm-on .uw .grid{display:block}
+.pm-on .uw .pm-bar{display:flex!important;position:fixed;left:0;right:0;bottom:0;z-index:10000;align-items:center;justify-content:center;gap:14px;padding:12px;background:var(--g-dark);color:#fff;font:600 15px Sarabun,system-ui,sans-serif;zoom:.9}
+.pm-bar button{border:0;border-radius:8px;padding:8px 18px;background:var(--g-main);color:#fff;font:600 15px Sarabun,system-ui,sans-serif;cursor:pointer}
+.pm-bar button:hover{background:var(--g-mid)}
+.pm-bar .pm-x{background:#b03a2e}
+.pm-bar span{min-width:70px;text-align:center}
+.pm-on .uw .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.pm-on .uw .tile .big{font-size:3.2rem}
+#closedays-card td,#closedays-card th{white-space:nowrap}
+.pm-on .uw .bt{max-height:none}
+</style>
 <div class="uw">
   <div class="hero">
   <h1>UPC West: ยอดขายวันที่ 15 พ.ย.*</h1>
@@ -945,6 +967,44 @@ body{padding:16px}
             <th class="n" data-field="ach">%ACH</th>
           </tr></thead>
           <tbody data-draw="two_body"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="grid">
+    <section class="card" id="three-area-card" style="grid-column:1/-1">
+      <h2>ยอดขาย 13–15 พ.ย. ทุกพื้นที่</h2>
+      <p class="note">เรียงตามยอดวันที่ 14 · วันที่ 13–14 ครบทั้งวัน · วันที่ 15* เป็นยอดระหว่างวัน</p>
+      <div class="scroll">
+        <table data-source="areas" data-row-key="area">
+          <thead><tr>
+            <th data-field="area">พื้นที่</th>
+            <th class="n" data-field="target">target / วัน</th>
+            <th class="n" data-field="nov13">13 พ.ย.</th>
+            <th class="n" data-field="nov14">14 พ.ย.</th>
+            <th class="n" data-field="nov15">15 พ.ย.*</th>
+          </tr></thead>
+          <tbody data-draw="three_area_body"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="grid">
+    <section class="card" id="three-shop-card" style="grid-column:1/-1">
+      <h2>ยอดขาย 13–15 พ.ย. รายร้าน UPC West</h2>
+      <p class="note">เรียงตามยอดวันที่ 14 · วันที่ 15* เป็นยอดระหว่างวัน</p>
+      <div class="scroll">
+        <table data-source="shops" data-row-key="shop">
+          <thead><tr>
+            <th data-field="shop">ร้าน</th>
+            <th class="n" data-field="target">target / วัน</th>
+            <th class="n" data-field="nov13">13 พ.ย.</th>
+            <th class="n" data-field="nov14">14 พ.ย.</th>
+            <th class="n" data-field="nov15">15 พ.ย.*</th>
+          </tr></thead>
+          <tbody data-draw="three_shop_body"></tbody>
         </table>
       </div>
     </section>
@@ -2171,6 +2231,26 @@ dash.draw('two_body', (tb) => {
   [...rows].sort((a, b) => oi(a.type) - oi(b.type) || b.total - a.total)
     .forEach((r) => addRow(tb, r.shop, [[short(r.shop)], [LBL[r.type] || r.type], [fI(r.tday), 'n'], [fI(r.target), 'n'], [fI(r.nov14), 'n'], [fI(r.nov15), 'n'],
       [fSI(r.gap), 'n'], [r.ach == null ? '—' : fP(r.ach), 'n']]));
+});
+
+dash.draw('three_area_body', (tb) => {
+  const rows = ready(tb, 'areas'); tb.replaceChildren(); if (!rows) return;
+  const S = (k) => rows.reduce((a, r) => a + (r[k] || 0), 0);
+  [...rows].sort((a, b) => b.nov14 - a.nov14).forEach((r) => {
+    addRow(tb, r.area, [[r.area], [fI(r.target), 'n'], [fI(r.nov13), 'n'], [fI(r.nov14), 'n'], [fI(r.nov15), 'n']]);
+    if (r.area === 'UPC - West') tb.lastElementChild.classList.add('hit-row');
+  });
+  addRow(tb, 'total', [['รวมทุกพื้นที่'], [fI(S('target')), 'n'], [fI(S('nov13')), 'n'], [fI(S('nov14')), 'n'], [fI(S('nov15')), 'n']]);
+  tb.lastElementChild.style.fontWeight = '600';
+});
+
+dash.draw('three_shop_body', (tb) => {
+  const rows = ready(tb, 'shops'); tb.replaceChildren(); if (!rows) return;
+  const S = (k) => rows.reduce((a, r) => a + (r[k] || 0), 0);
+  [...rows].sort((a, b) => b.nov14 - a.nov14).forEach((r) =>
+    addRow(tb, r.shop, [[short(r.shop)], [fI(r.target), 'n'], [fI(r.nov13), 'n'], [fI(r.nov14), 'n'], [fI(r.nov15), 'n']]));
+  addRow(tb, 'total', [['รวม UPC West'], [fI(S('target')), 'n'], [fI(S('nov13')), 'n'], [fI(S('nov14')), 'n'], [fI(S('nov15')), 'n']]);
+  tb.lastElementChild.style.fontWeight = '600';
 });
 
 dash.draw('day5body', (tb) => {
