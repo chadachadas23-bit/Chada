@@ -3135,6 +3135,28 @@ body{padding:16px}
 #closedays-card td,#closedays-card th{white-space:nowrap}
 .pm-on .uw .bt{max-height:none}
 </style>
+
+
+<style id="pm-css">
+.uw .pm-btn{margin-top:10px;padding:8px 16px;border:0;border-radius:999px;background:var(--g-main);color:#fff;font:600 14px/1 Sarabun,system-ui,sans-serif;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.uw .pm-btn:hover{background:var(--g-deep)}
+.uw .pm-bar{display:none}
+.pm-on{overflow:hidden}
+.pm-on .uw{position:fixed;inset:0;z-index:9999;overflow:auto;padding:28px 6vw 84px;background:var(--color-panel,#fff);zoom:1.12}
+.pm-on .uw>*{display:none!important}
+.pm-on .uw>.pm-wrap{display:block!important;max-width:1280px;margin:0 auto}
+.pm-on .uw .grid>*:not(.pm-cur){display:none!important}
+.pm-on .uw .grid{display:block}
+.pm-on .uw .pm-bar{display:flex!important;position:fixed;left:0;right:0;bottom:0;z-index:10000;align-items:center;justify-content:center;gap:14px;padding:12px;background:var(--g-dark);color:#fff;font:600 15px Sarabun,system-ui,sans-serif;zoom:.9}
+.pm-bar button{border:0;border-radius:8px;padding:8px 18px;background:var(--g-main);color:#fff;font:600 15px Sarabun,system-ui,sans-serif;cursor:pointer}
+.pm-bar button:hover{background:var(--g-mid)}
+.pm-bar .pm-x{background:#b03a2e}
+.pm-bar span{min-width:70px;text-align:center}
+.pm-on .uw .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.pm-on .uw .tile .big{font-size:3.2rem}
+#closedays-card td,#closedays-card th{white-space:nowrap}
+.pm-on .uw .bt{max-height:none}
+</style>
 <div class="uw">
   <div class="hero">
   <h1>UPC West: ยอดขายวันที่ 24 พ.ย.*</h1>
@@ -3144,7 +3166,7 @@ body{padding:16px}
   </div>
 
   <h2 class="sec" id="day5">สรุปยอดขายวันที่ 24 พ.ย.*</h2>
-  <p class="sub sec-sub">วันที่ 23 ครบทั้งวัน · วันที่ 24* เป็นยอดระหว่างวัน ณ 22:38 ของ 24 พ.ย. จึงยังไม่ควรเทียบกับ target เต็มวัน · %ACH = ยอดขาย ÷ target ต่อวัน · ยอดขายจากแท็บ 8 DAY</p>
+  <p class="sub sec-sub">วันที่ 23 ครบทั้งวัน · วันที่ 24* เป็นยอดระหว่างวัน ณ 22:45 ของ 24 พ.ย. จึงยังไม่ควรเทียบกับ target เต็มวัน · %ACH = ยอดขาย ÷ target ต่อวัน · ยอดขายจากแท็บ 8 DAY</p>
 
   <div class="tiles">
     <div class="tile card">
@@ -3227,7 +3249,6 @@ body{padding:16px}
             <th data-field="type">ประเภท</th>
             <th class="n" data-field="tday">target / วัน</th>
             <th class="n" data-field="target">target วันนี้</th>
-            <th class="n" data-field="nov23">23 พ.ย.</th>
             <th class="n" data-field="nov24">24 พ.ย.*</th>
             <th class="n" data-field="gap">ผลต่าง target</th>
             <th class="n" data-field="ach">%ACH</th>
@@ -3278,7 +3299,7 @@ body{padding:16px}
   </div>
 
   <h2 class="sec">การปิดการขาย</h2>
-  <p class="sub sec-sub">สรุปปิดการขายใช้วันที่ 24 (ถึง 22:38) เทียบวันที่ 23 ที่ครบทั้งวัน · กราฟรายชั่วโมงและตารางรายวันรายสาขารวมวันที่ 1–23 แล้ว (* ยอดระหว่างวัน)</p>
+  <p class="sub sec-sub">สรุปปิดการขายใช้วันที่ 24 (ถึง 22:45) เทียบวันที่ 23 ที่ครบทั้งวัน · กราฟรายชั่วโมงและตารางรายวันรายสาขารวมวันที่ 1–23 แล้ว (* ยอดระหว่างวัน)</p>
   <p class="sub sec-sub">จากแบบฟอร์มบันทึกผลการขายหน้าร้าน (แท็บ การตอบแบบฟอร์ม 1) · อัตราปิดการขาย = รายการที่ปิดได้ ÷ รายการที่บันทึกทั้งหมด</p>
 
   <div class="tiles">
@@ -3306,7 +3327,7 @@ body{padding:16px}
 
   <section class="card" id="offer-card" style="margin-bottom:var(--cds-gap-md)">
       <h2>ประเภทการนำเสนอที่ปิดการขายได้ (จำนวนเบอร์)</h2>
-      <p class="note">UPC West · นับจำนวนเบอร์ที่ปิดได้ แยกตามประเภทการนำเสนอ · 24 พ.ย.* ถึง 22:38</p>
+      <p class="note">UPC West · นับจำนวนเบอร์ที่ปิดได้ แยกตามประเภทการนำเสนอ · 24 พ.ย.* ถึง 22:45</p>
       <table data-source="offer_sum" data-row-key="offer">
         <thead><tr>
           <th data-field="offer">ประเภทการนำเสนอ</th>
@@ -3342,14 +3363,14 @@ body{padding:16px}
     </section>
     <section class="card" id="reasons-card">
       <h2>เหตุผลที่ปิดการขายไม่ได้</h2>
-      <p class="note">UPC West · 24 พ.ย. (ถึง 22:38) จำนวนรายการ (เลื่อนเมาส์ดู 23 พ.ย.)</p>
+      <p class="note">UPC West · 24 พ.ย. (ถึง 22:45) จำนวนรายการ (เลื่อนเมาส์ดู 23 พ.ย.)</p>
       <div class="chart c-reasons" data-draw="reasons" data-source="reason_top"></div>
     </section>
   </div>
 
   <section class="card" id="channel-card" style="margin-bottom:var(--cds-gap-md)">
       <h2>แยกตามช่องทางการขาย</h2>
-      <p class="note">UPC West · เรียงตามจำนวนรายการ 24 พ.ย. (ถึง 22:38)</p>
+      <p class="note">UPC West · เรียงตามจำนวนรายการ 24 พ.ย. (ถึง 22:45)</p>
       <table data-source="channel_perf" data-row-key="channel">
         <thead><tr>
           <th data-field="channel">ช่องทาง</th>
@@ -3380,7 +3401,7 @@ body{padding:16px}
   <div class="grid">
     <section class="card" id="hours-card" style="grid-column:1/-1">
       <h2>จำนวนที่ปิดการขายได้ รายชั่วโมง เทียบแต่ละวัน</h2>
-      <p class="note">UPC West · 23 พ.ย. ครบทั้งวัน · 24 พ.ย.* ถึง 22:38 · วางเมาส์บนชั่วโมงเพื่อดูตัวเลขของทุกวัน</p>
+      <p class="note">UPC West · 23 พ.ย. ครบทั้งวัน · 24 พ.ย.* ถึง 22:45 · วางเมาส์บนชั่วโมงเพื่อดูตัวเลขของทุกวัน</p>
       <div class="chart c-hours" data-draw="hours" data-source="hour_mix"></div>
       <table data-source="hour_mix" class="daysum">
         <thead><tr>
@@ -3397,7 +3418,7 @@ body{padding:16px}
 
   <section class="card" id="closeshops-card" style="margin-bottom:var(--cds-gap-md)">
     <h2>การปิดการขายรายร้าน</h2>
-    <p class="note">UPC West · เรียงตามจำนวนรายการ 24 พ.ย. (ถึง 22:38)</p>
+    <p class="note">UPC West · เรียงตามจำนวนรายการ 24 พ.ย. (ถึง 22:45)</p>
     <div class="scroll">
       <table data-source="shop_close" data-row-key="shop">
         <thead><tr>
@@ -3414,7 +3435,7 @@ body{padding:16px}
 
   <section class="card" id="closedays-card" style="margin-bottom:var(--cds-gap-md)">
     <h2>การปิดการขายรายวัน รายสาขา</h2>
-    <p class="note">UPC West · 1–24 พ.ย. (* วันที่ 24 ถึง 22:38) · แต่ละช่องคือ ปิดได้ / รายการ · เรียงจากสาขาที่มีรายการลงข้อมูลมากที่สุดตลอด 1–24 พ.ย.</p>
+    <p class="note">UPC West · 1–24 พ.ย. (* วันที่ 24 ถึง 22:45) · แต่ละช่องคือ ปิดได้ / รายการ · เรียงจากสาขาที่มีรายการลงข้อมูลมากที่สุดตลอด 1–24 พ.ย.</p>
     <div class="scroll">
       <table data-source="shop_close_days" data-row-key="shop">
         <thead><tr>
@@ -3454,7 +3475,7 @@ body{padding:16px}
 
   <section class="card" id="staff-card" style="margin-bottom:var(--cds-gap-md)">
     <h2>การปิดการขายรายพนักงาน</h2>
-    <p class="note">UPC West · 24 พ.ย. (ถึง 22:38) · แสดงตามรหัสพนักงาน (SALE ID) จากฟอร์ม · ยอดขายคือยอดรวมของรายการที่ปิดได้</p>
+    <p class="note">UPC West · 24 พ.ย. (ถึง 22:45) · แสดงตามรหัสพนักงาน (SALE ID) จากฟอร์ม · ยอดขายคือยอดรวมของรายการที่ปิดได้</p>
     <div class="pick">
       <label for="staffsel">สาขา</label>
       <select id="staffsel" data-draw="staffsel" data-source="staff_perf"></select>
@@ -3500,11 +3521,11 @@ body{padding:16px}
   <div class="grid">
     <section class="card" id="trend-card">
       <h2>ยอดขายรายวัน เทียบ target</h2>
-      <p class="note">รวมทุกร้านใน UPC West · เส้นประคือ target ต่อวัน · ตั้งแต่ 1 พ.ย. ถึง 24 พ.ย. (* 24 พ.ย. เป็นยอดระหว่างวัน ณ 22:38) · target ต่อวันเปลี่ยนตามชุด target ใหม่ของชีต</p>
+      <p class="note">รวมทุกร้านใน UPC West · เส้นประคือ target ต่อวัน · ตั้งแต่ 1 พ.ย. ถึง 24 พ.ย. (* 24 พ.ย. เป็นยอดระหว่างวัน ณ 22:45) · target ต่อวันเปลี่ยนตามชุด target ใหม่ของชีต</p>
       <div class="chart c-trend" data-draw="trend" data-source="west_days"></div>
     </section>
     <section class="card" id="areas-card">
-      <h2>%ACH วันที่ 24 (ถึง 22:38) เทียบทุกพื้นที่</h2>
+      <h2>%ACH วันที่ 24 (ถึง 22:45) เทียบทุกพื้นที่</h2>
       <p class="note">เรียงจากสูงไปต่ำ · UPC West ไฮไลต์สี</p>
       <div class="chart c-areas" data-draw="areas" data-source="area_rank"></div>
     </section>
@@ -3521,13 +3542,13 @@ body{padding:16px}
 
   <section class="card plan" id="plan-card" style="margin-bottom:var(--cds-gap-md)">
     <h2>แผนเพิ่มยอดขาย UPC West</h2>
-    <p class="note">สรุปจากข้อมูลวันที่ 24 พ.ย. (ถึง 22:38) · ตัวเลขในแผนคำนวณจากชุดข้อมูลในรายงานนี้</p>
+    <p class="note">สรุปจากข้อมูลวันที่ 24 พ.ย. (ถึง 22:45) · ตัวเลขในแผนคำนวณจากชุดข้อมูลในรายงานนี้</p>
     <div data-draw="plan" data-source="shop_two closing_shops closing_channels closing_reasons closing_hours staff_perf"></div>
   </section>
 
   <section class="card" id="shops-card">
     <h2>รายละเอียดรายร้าน</h2>
-    <p class="note">คลิกหัวคอลัมน์เพื่อเรียงลำดับ · เปลี่ยนจาก 23 พ.ย. = ยอด 24 พ.ย. (ถึง 22:38) เทียบ 23 พ.ย. ทั้งวัน</p>
+    <p class="note">คลิกหัวคอลัมน์เพื่อเรียงลำดับ · เปลี่ยนจาก 23 พ.ย. = ยอด 24 พ.ย. (ถึง 22:45) เทียบ 23 พ.ย. ทั้งวัน</p>
     <div class="scroll">
       <table id="shoptbl" data-source="shop_perf" data-row-key="shop">
         <thead><tr>
@@ -3655,7 +3676,7 @@ dash.calc('type_mix', {
 dash.calc('shop_perf', {
   inputs: ['shops'],
   title: 'ผลงานรายร้าน',
-  description: 'ยอด 24 พ.ย. (ถึง 22:38) เทียบ target ต่อวัน และเทียบยอด 23 พ.ย. ของแต่ละร้าน (ฟิลด์ nov1 = ยอดวันก่อนหน้า 23 พ.ย., nov2 = ยอดวันนี้ 24 พ.ย.)',
+  description: 'ยอด 24 พ.ย. (ถึง 22:45) เทียบ target ต่อวัน และเทียบยอด 23 พ.ย. ของแต่ละร้าน (ฟิลด์ nov1 = ยอดวันก่อนหน้า 23 พ.ย., nov2 = ยอดวันนี้ 24 พ.ย.)',
   fn: (shops) => shops.map((r) => ({
     shop: r.shop, type: r.type, target: r.target, nov1: r.nov23, nov2: r.nov24,
     ach: r.target ? r.nov24 / r.target : null, gap: r.nov24 - r.target,
@@ -4055,7 +4076,7 @@ dash.draw('hours', (el) => {
     .style('fill', (r) => DAYCOL[r.day]);
   let lx = m.l;
   days.forEach((d) => {
-    const lab = d + ' พ.ย.' + (d === '24' ? '* (ถึง 22:38)' : '');
+    const lab = d + ' พ.ย.' + (d === '24' ? '* (ถึง 22:45)' : '');
     svg.append('rect').attr('x', lx).attr('y', 5).attr('width', 10).attr('height', 10).attr('rx', 2).style('fill', DAYCOL[d]);
     svg.append('text').attr('x', lx + 16).attr('y', 15).text(lab);
     lx += 16 + tw(svg, lab) + 16;
@@ -4291,7 +4312,7 @@ dash.calc('shop_two', {
 dash.calc('day5_kpi', {
   inputs: ['shops'],
   title: 'ตัวเลขหลักวันที่ 24',
-  description: 'ยอดรวมทุกร้านของ 24 พ.ย. (ถึง 22:38) เทียบ target ต่อวัน และยอดสะสม 24 พ.ย.*',
+  description: 'ยอดรวมทุกร้านของ 24 พ.ย. (ถึง 22:45) เทียบ target ต่อวัน และยอดสะสม 24 พ.ย.*',
   fn: (shops) => {
     const sum = (k) => shops.reduce((s, r) => s + r[k], 0);
     const actual = sum('nov24'), target = sum('target'), cum = sum('nov23') + actual;
@@ -4302,7 +4323,7 @@ dash.calc('day5_kpi', {
 dash.calc('area_rank5', {
   inputs: ['areas'],
   title: 'อันดับ %ACH วันที่ 24 รายพื้นที่',
-  description: 'ยอด 24 พ.ย. (ถึง 22:38) ÷ target ต่อวัน ของแต่ละพื้นที่ เรียงจากสูงไปต่ำ',
+  description: 'ยอด 24 พ.ย. (ถึง 22:45) ÷ target ต่อวัน ของแต่ละพื้นที่ เรียงจากสูงไปต่ำ',
   fn: (areas) => {
     const rows = areas.map((a) => ({area: a.area, actual: a.nov24, target: a.target, ach: a.nov24 / a.target}))
       .sort((x, y) => y.ach - x.ach);
@@ -4505,7 +4526,7 @@ dash.draw('two_body', (tb) => {
   const ORD = ['Matching', 'DTAC HALL', 'Non Matching', 'DTAC COCO'], LBL = {'DTAC HALL': 'Hall', 'DTAC COCO': 'COCO'};
   const oi = (t) => { const i = ORD.indexOf(t); return i < 0 ? 99 : i; };
   [...rows].sort((a, b) => oi(a.type) - oi(b.type) || b.total - a.total)
-    .forEach((r) => addRow(tb, r.shop, [[short(r.shop)], [LBL[r.type] || r.type], [fI(r.tday), 'n'], [fI(r.target), 'n'], [fI(r.nov23), 'n'], [fI(r.nov24), 'n'],
+    .forEach((r) => addRow(tb, r.shop, [[short(r.shop)], [LBL[r.type] || r.type], [fI(r.tday), 'n'], [fI(r.target), 'n'], [fI(r.nov24), 'n'],
       [fSI(r.gap), 'n'], [r.ach == null ? '—' : fP(r.ach), 'n']]));
 });
 
